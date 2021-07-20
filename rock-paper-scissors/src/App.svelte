@@ -1,11 +1,13 @@
 <script lang="ts">
-  import Lizard from "./components/svg/lizard.svelte";
+  import Game from "./components/game.svelte";
   import { theme } from "./styles/theme";
 </script>
 
-<main style={"background:" + theme.platte.background}>
-  <p class="text-lg">Rock Paper Scisors</p>
-  <Lizard />
+<main
+  style={"background:" + theme.platte.background}
+  class="container h-screen absolute"
+>
+  <Game />
 </main>
 
 <style global lang="postcss">
