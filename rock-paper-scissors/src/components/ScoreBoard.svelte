@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { theme } from "../styles/theme";
+
   export let score: number;
 </script>
 
@@ -7,9 +9,9 @@
 >
   <div class="flex justify-between text-2xl text-white font-bold">
     <div class="flex flex-col justify-center mr-80">
-      <span>ROCK</span>
-      <span>PAPER</span>
-      <span>SCISSORS</span>
+      <span style="color: hsl(349, 71%, 52%);">ROCK</span>
+      <span style="color: hsl(230, 89%, 62%);">PAPER</span>
+      <span style="color: hsl(39, 89%, 49%)">SCISSORS</span>
     </div>
     <div
       class="bg-white flex flex-col justify-center items-center p-6 rounded-xl"
