@@ -5,7 +5,7 @@
 
 <main
   style={"background:" + theme.platte.background}
-  class="container h-screen absolute"
+  class="container h-screen w-screen"
 >
   <Game />
 </main>

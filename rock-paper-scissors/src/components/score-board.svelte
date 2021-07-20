@@ -14,7 +14,8 @@
     <div
       class="bg-white flex flex-col justify-center items-center p-6 rounded-xl"
     >
-      <span class="text-blue-500 tracking-wider font-medium">SCORE</span>
+      <span class="text-blue-500 tracking-wider font-medium text-lg">SCORE</span
+      >
       <span class="text-gray-500 text-4xl">{score}</span>
     </div>
   </div>

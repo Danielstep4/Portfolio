@@ -17,9 +17,9 @@
   >
   {#if modalOpen}
     <div
-      class="absolute text-white z-10 h-screen container flex items-center justify-center"
+      class="fixed text-white z-20 h-min w-min container flex items-center justify-center mx-auto left-0 right-0"
     >
-      <div class="relative w-min h-min bg-white py-16 px-16 rounded-lg z-20">
+      <div class="relative w-min h-min bg-white py-16 px-16 rounded-lg z-30">
         <span class="text-black text-xl absolute left-3 top-2 font-bold "
           >RULES</span
         >
@@ -30,5 +30,9 @@
         <Rules />
       </div>
     </div>
+    <div
+      class="fixed top-0 left-0 bg-gray-500 bg-opacity-10 z-10 w-screen h-screen"
+      on:click={closeModal}
+    />
   {/if}
 </div>

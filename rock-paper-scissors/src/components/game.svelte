@@ -3,7 +3,7 @@
   import ScoreBoard from "./score-board.svelte";
 </script>
 
-<main>
+<main class="py-10">
   <ScoreBoard />
   <RulesModal />
 </main>
