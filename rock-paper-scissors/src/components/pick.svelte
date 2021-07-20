@@ -5,14 +5,15 @@
   import Paper from "./svg/paper.svelte";
   import Rock from "./svg/rock.svelte";
   import Scissors from "./svg/scissors.svelte";
-  const pressed = () => {
-    console.log("pressed");
-  };
+  export let pickOne;
 </script>
 
 <div class="absolute left-0 right-0 mx-auto w-min my-16">
   <BgTriangle />
-  <div class="absolute -top-8 -left-8 pick-button">
+  <div
+    class="absolute -top-8 -left-8 pick-button"
+    on:click={() => pickOne("paper")}
+  >
     <div
       class="rounded-full w-40 h-40 border border-black "
       style={"background:" + theme.platte.primary.paper}
@@ -26,7 +27,11 @@
       </div>
     </div>
   </div>
-  <div class="absolute top-0 right-0 pick-button -top-8 -right-8">
+  <div
+    class="absolute top-0 right-0 pick-button -top-8 -right-8"
+    on:click={() => pickOne("scissors")}
+    data-label="scissors"
+  >
     <div
       class="rounded-full w-40 h-40 border border-black "
       style={"background:" + theme.platte.primary.scissors}
@@ -42,7 +47,7 @@
   </div>
   <div
     class="absolute left-0 right-0 mx-auto flex justify-center bottom-1 pick-button"
-    on:click={pressed}
+    on:click={() => pickOne("rock")}
   >
     <div
       class="rounded-full w-40 h-40 relative border border-black "
