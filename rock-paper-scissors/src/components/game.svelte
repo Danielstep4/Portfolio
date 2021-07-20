@@ -2,20 +2,26 @@
   import RulesModal from "./RulesModal.svelte";
   import ScoreBoard from "./ScoreBoard.svelte";
   import Pick from "./Pick.svelte";
-  let score: number = 0;
-  let currentPick: string | undefined;
-  const pickOne = (e: string) => {
-    currentPick = e;
-  };
+  import Play from "./Play.svelte";
+  import { writable } from "svelte/store";
+  // Score
+  let score: number;
+  const scoreStore = writable(0);
+  scoreStore.subscribe((value) => (score = value));
+  // PlayerPick
+  let currentPick: PickChoices | undefined;
+  const playerPickStore = writable<PickChoices | undefined>(undefined);
+  playerPickStore.subscribe((value) => (currentPick = value));
+  const pickOne = (e: PickChoices) => playerPickStore.update(() => e);
 </script>
 
 <main class="py-10">
-  <ScoreBoard {score} />
+  <svelte:component this={ScoreBoard} {score} />
   {#if !currentPick}
     <Pick {pickOne} />
   {/if}
   {#if currentPick}
-    <h1 class="text-white">{currentPick}</h1>
+    <Play {currentPick} {scoreStore} {playerPickStore} />
   {/if}
   <RulesModal />
 </main>

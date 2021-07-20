@@ -17,3 +17,5 @@ type Theme = {
         
     }
 }
+
+type PickChoices = "paper" | "rock" | "scissors";

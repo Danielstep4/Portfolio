@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { theme } from "../styles/theme";
-
   export let score: number;
 </script>
 
