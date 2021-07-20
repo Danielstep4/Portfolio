@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let score: number = 0;
+  export let score: number;
 </script>
 
 <div
