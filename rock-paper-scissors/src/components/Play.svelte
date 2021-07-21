@@ -1,29 +1,16 @@
 <script lang="ts">
+  // Imports
   import Badge from "./Badges/Badge.svelte";
   import type { Writable } from "svelte/store";
+  import { choicesArr, checkWhoWon } from "../Utils/Play";
   // Props
   export let currentPick: PickChoices;
   export let scoreStore: Writable<number>;
   export let playerPickStore: Writable<PickChoices>;
-  // Hash to check who won
-  const winHash: { [key: string]: PickChoices } = {
-    rock: "scissors",
-    paper: "rock",
-    scissors: "paper",
-  };
   // Bot Choice
-  let choicesArr: PickChoices[] = Object.values(winHash);
   const botChoice: PickChoices =
     choicesArr[Math.floor(Math.random() * 100) % 3];
-  // Check Who Won
-  const checkWhoWon = (
-    playerChoice: PickChoices,
-    botChoice: PickChoices
-  ): number => {
-    if (playerChoice == botChoice) return 0;
-    if (winHash[playerChoice] == botChoice) return 1;
-    else return -1;
-  };
+  // Verdict and score state update
   const Verdict = (num: number) => {
     scoreStore.update((n) => n + num);
     return num == 1 ? "Player Won!" : num == -1 ? "Player Lost!" : "Draw!";
