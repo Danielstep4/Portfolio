@@ -3,10 +3,7 @@
   import { theme } from "./styles/theme";
 </script>
 
-<main
-  style={"background:" + theme.platte.background}
-  class="container h-screen w-screen"
->
+<main style={"background:" + theme.platte.background} class="h-screen w-screen">
   <Game />
 </main>
 

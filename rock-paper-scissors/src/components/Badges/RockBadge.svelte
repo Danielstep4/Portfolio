@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="absolute left-0 right-0 mx-auto flex justify-center bottom-1 pick-button"
+  class="absolute left-0 right-0  mx-auto flex justify-center bottom-1 pick-button"
   on:click={() => pickOne("rock")}
 >
   <div

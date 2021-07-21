@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="absolute -top-8 -left-8 pick-button"
+  class="absolute -top-8 sm:-left-8 pick-button left-2"
   on:click={() => pickOne("paper")}
 >
   <div

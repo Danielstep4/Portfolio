@@ -17,9 +17,11 @@
   >
   {#if modalOpen}
     <div
-      class="fixed text-white z-20 h-min w-min container flex items-center justify-center m-auto left-0 right-0 top-0 bottom-0"
+      class="fixed text-white z-20 sm:h-min sm:w-min container flex items-center justify-center m-auto left-0 right-0 top-0 bottom-0"
     >
-      <div class="relative w-min h-min bg-white py-16 px-16 rounded-lg z-30">
+      <div
+        class="relative w-min h-min bg-white py-16 sm:px-16  px-4 rounded-lg z-30"
+      >
         <span class="text-black text-xl absolute left-3 top-2 font-bold "
           >RULES</span
         >

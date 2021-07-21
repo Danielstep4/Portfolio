@@ -18,22 +18,26 @@
 </script>
 
 <div
-  class="text-white flex flex-row justify-between w-1/3 mx-auto my-10 font-bold"
+  class="font-bold text-white sm:w-1/3 w-screen  sm:h-min  mx-auto my-10  px-2"
 >
-  <div class="flex flex-col justify-between items-center">
-    <span>YOU PICKED</span>
-    <Badge name={currentPick} />
+  <div class=" flex flex-wrap justify-between ">
+    <div class="flex flex-col justify-start items-center">
+      <span>YOU PICKED</span>
+      <Badge name={currentPick} />
+    </div>
+    <div class="flex flex-col justify-start items-center">
+      <span>THE HOUSE PICKED</span>
+      <Badge name={botChoice} />
+    </div>
   </div>
-  <div class="my-16 flex flex-col items-center text-2xl">
+  <div
+    class="flex flex-col text-2xl mx-auto text-center justify-center items-center"
+  >
     <span>{Verdict(checkWhoWon(currentPick, botChoice))}</span>
     <button
       class="bg-white rounded text-red-700 px-8 py-2 font-bold text-sm mt-8"
       on:click={() => playerPickStore.update(() => undefined)}
       >PLAY AGAIN</button
     >
-  </div>
-  <div class="flex flex-col justify-between items-center">
-    <span>THE HOUSE PICKED</span>
-    <Badge name={botChoice} />
   </div>
 </div>
