@@ -1,4 +1,5 @@
 <script lang="ts">
+  // Props
   export let score: number;
 </script>
 

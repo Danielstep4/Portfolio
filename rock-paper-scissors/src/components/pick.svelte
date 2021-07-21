@@ -3,6 +3,7 @@
   import RockBadge from "./Badges/RockBadge.svelte";
   import ScissorsBadge from "./Badges/ScissorsBadge.svelte";
   import BgTriangle from "./svg/bg-triangle.svelte";
+  // Props
   export let pickOne;
 </script>
 

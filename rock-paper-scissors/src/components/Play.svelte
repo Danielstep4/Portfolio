@@ -11,7 +11,8 @@
   const botChoice: PickChoices =
     choicesArr[Math.floor(Math.random() * 100) % 3];
   // Verdict and score state update
-  const Verdict = (num: number) => {
+  const Verdict = () => {
+    const num: number = checkWhoWon(currentPick, botChoice);
     scoreStore.update((n) => n + num);
     return num == 1 ? "Player Won!" : num == -1 ? "Player Lost!" : "Draw!";
   };
@@ -33,7 +34,7 @@
   <div
     class="flex flex-col text-2xl mx-auto text-center justify-center items-center"
   >
-    <span>{Verdict(checkWhoWon(currentPick, botChoice))}</span>
+    <span>{Verdict()}</span>
     <button
       class="bg-white rounded text-red-700 px-8 py-2 font-bold text-sm mt-8"
       on:click={() => playerPickStore.update(() => undefined)}

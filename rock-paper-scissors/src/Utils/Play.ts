@@ -4,10 +4,9 @@ const winHash: { [key: string]: PickChoices } = {
     paper: "rock",
     scissors: "paper",
   };
+// Choices Array
 export let choicesArr: PickChoices[] = Object.values(winHash);
-    // Check Who Won
-    // Bot Choice
-
+// Check Who Won
 export const checkWhoWon = (
     playerChoice: PickChoices,
     botChoice: PickChoices

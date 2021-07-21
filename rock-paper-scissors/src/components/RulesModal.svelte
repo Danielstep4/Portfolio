@@ -1,6 +1,6 @@
 <script lang="ts">
   import Rules from "./svg/rules.svelte";
-
+  // Modal functionality
   let modalOpen: boolean = false;
   const handleClick = () => (modalOpen = !modalOpen);
   const closeModal = () => {
