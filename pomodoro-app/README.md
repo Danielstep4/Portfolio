@@ -1,1 +1,1 @@
-# Vue 3 + Typescript + Vite + Bootstrap 5
+# Vue 3 + Typescript + Vite + Tailwind.css

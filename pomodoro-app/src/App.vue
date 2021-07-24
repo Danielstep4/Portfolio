@@ -1,18 +1,23 @@
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <main class="w-screen h-screen font-mono">
+  <PomodoroClock />
+  </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import PomodoroClock from './components/PomodoroClock.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    PomodoroClock
   }
 })
 </script>
 
 <style>
+  main {
+    background: rgba(30,33,64,255);
+  }
 </style>
