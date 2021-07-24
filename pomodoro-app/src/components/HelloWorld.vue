@@ -1,7 +1,5 @@
 <template>
   <button class="btn btn-primary">{{ msg }}</button>
-
-  
 </template>
 
 <script lang="ts">
