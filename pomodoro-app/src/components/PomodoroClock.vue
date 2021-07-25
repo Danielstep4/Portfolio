@@ -1,9 +1,9 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto text-center w-screen h-screen">
     <h3 class="text-white text-center py-12 text-3xl font-bold select-none">Pomodoro Clock</h3>
-    <Indicator v-bind:indicators="indicators" />
-    <Clock />
-    <Settings v-bind:indicators="indicators" v-bind:colors="colorContext"/>
+    <Indicator v-bind:indicators="clockState" />
+    <Clock v-bind:clockState="clockState"/>
+    <Settings v-bind:indicators="clockState" v-bind:colors="colorContext"/>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import {  defineComponent } from 'vue'
 import Clock from './Clock.vue'
 import Settings from './Settings.vue'
 import Indicator from './Indicator.vue'
-import { ColorContext, Indicators } from '../global'
+import { ClockState, ColorContext } from '../global'
 import {theme} from '../Utils/theme'
 export default defineComponent({
   name: 'PomodoroClock',
@@ -22,8 +22,8 @@ export default defineComponent({
     Indicator
   },
   data() {
-    const indicators: Indicators[] = [
-      { text: "Pomodoro",isActive: true, value: 25 },
+    const clockState: ClockState[] = [
+      { text: "Pomodoro", isActive: true, value: 25 },
       { text: "Short Break", isActive: false, value: 5  },
       { text: "Long Break", isActive: false, value: 15  }
     ]
@@ -33,7 +33,7 @@ export default defineComponent({
       { name: 'green', color: theme.pallete.success,  active: false},
     ]
     return {
-      indicators,
+      clockState,
       colorContext
     }
   }

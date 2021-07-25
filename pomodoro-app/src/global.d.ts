@@ -1,6 +1,6 @@
-type IndicatorTextType = "Pomodoro" | "Short Break" | "Long Break"
-export type Indicators = {
-    text: IndicatorTextType;
+type ClockStateName = "Pomodoro" | "Short Break" | "Long Break"
+export type ClockState = {
+    text: ClockStateName;
     isActive: boolean;
     value: number
 }

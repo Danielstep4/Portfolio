@@ -1,5 +1,5 @@
 <template>
-     <div id="indicators" class="flex flex-row text-gray-500  text-center justify-center w-1/3 mx-auto rounded-full h-14 my-5">
+     <div id="indicators" class="flex flex-row text-gray-500  text-center justify-center w-1/3 mx-auto rounded-full h-14">
         <p v-for="btn of indicators" v-bind:key="btn" v-bind:class="{ active: btn.isActive}" class="rounded-full whitespace-nowrap flex-1 flex justify-center items-center select-none">
             {{ btn.text }}
         </p>
