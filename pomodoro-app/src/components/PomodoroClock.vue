@@ -3,7 +3,7 @@
     <h3 class="text-white text-center py-12 text-3xl font-bold select-none">Pomodoro Clock</h3>
     <Indicator v-bind:indicators="indicators" />
     <Clock />
-    <Settings />
+    <Settings v-bind:indicators="indicators" v-bind:colors="colorContext"/>
   </div>
 </template>
 
@@ -12,7 +12,8 @@ import {  defineComponent } from 'vue'
 import Clock from './Clock.vue'
 import Settings from './Settings.vue'
 import Indicator from './Indicator.vue'
-import { Indicators } from '../global'
+import { ColorContext, Indicators } from '../global'
+import {theme} from '../Utils/theme'
 export default defineComponent({
   name: 'PomodoroClock',
   components: {
@@ -21,9 +22,19 @@ export default defineComponent({
     Indicator
   },
   data() {
-    const indicators: Indicators[] = [{ text: "Pomodoro", isActive: true }, { text: "Short Break", isActive: false  }, { text: "Long Break", isActive: false  }]
+    const indicators: Indicators[] = [
+      { text: "Pomodoro",isActive: true, value: 25 },
+      { text: "Short Break", isActive: false, value: 5  },
+      { text: "Long Break", isActive: false, value: 15  }
+    ]
+    const colorContext: ColorContext[] = [
+      { name: 'default', color: theme.pallete.primary, active: true},
+      { name: 'blue', color: theme.pallete.secondry,  active: false},
+      { name: 'green', color: theme.pallete.success,  active: false},
+    ]
     return {
-      indicators
+      indicators,
+      colorContext
     }
   }
 })
