@@ -4,7 +4,6 @@ export type ClockContext = {
     isActive: boolean;
     value: string;
 }
-
 export type Theme = {
     pallete: {
         primary: string
@@ -12,13 +11,8 @@ export type Theme = {
         success: string;
     }
 }
-
 export type ColorContext = {
     name: string;
     color: string;
     active: boolean;
-}
-export type Store = {
-    clockContext: ClockContext[];
-    colorContext: ColorContext[];
 }

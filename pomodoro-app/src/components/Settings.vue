@@ -13,7 +13,7 @@
                 <div class="p-5">
                     <span class="uppercase tracking-widest font-bold text-lg">time (minutes)</span>
                     <div class="flex flex-row" >
-                        <div v-for="clock in clockContext" v-bind:key="clock.text" class="flex flex-row justify-start">
+                        <div v-for="clock in store.settings.clockContext" v-bind:key="clock.text" class="flex flex-row justify-start">
                             <div class="flex flex-col pr-8">
                                 <span class="whitespace-nowrap">{{ clock.name }}</span>
                                 <input type="number" :name="clock.text" :id="clock.text"  class="block w-full bg-gray-200 h-10 pl-1" v-model="clock.value">
@@ -25,14 +25,14 @@
                 <div class="p-5 flex flex-row justify-between items-center">
                     <span class="uppercase tracking-widest font-bold text-lg">color</span>
                     <div class="flex flex-row justify-between w-min" >
-                        <div v-for="color in colorContext" v-bind:key="color.name" @click="() => changeColor(color.name)" class="rounded-full bg-black w-10 h-10 inline-block mx-1 cursor-pointer relative flex items-center" v-bind:style="{ backgroundColor: color.color }">
+                        <div v-for="color in store.settings.colorContext" v-bind:key="color.name" @click="() => changeColor(color.name)" class="rounded-full bg-black w-10 h-10 inline-block mx-1 cursor-pointer relative flex items-center" v-bind:style="{ backgroundColor: color.color }">
                             <span v-if="color.active" class="mx-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                             </span>
                         </div>
                     </div>
                 </div>
-            <button class="absolute left-0 right-0 mx-auto -bottom-4 px-8 py-2 rounded-full text-white" @click="saveSettings" :style="{backgroundColor: color}">Apply</button>
+            <button class="absolute left-0 right-0 mx-auto -bottom-4 px-8 py-2 rounded-full text-white" @click="saveSettings" :style="{backgroundColor: store.state.color}">Apply</button>
             </div>
         </div>
         <div v-if="isOpen" class="fixed top-0 left-0 w-screen h-screen z-10" @click="handleModal"></div>
@@ -41,37 +41,22 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import { ColorContext } from '../global'
+import {defineComponent, inject} from 'vue'
+import { Store } from '../store/store';
 export default defineComponent({
     name: 'Settings',
-    props: {
-        store: Object
-    },
-    data({ store }) {
-        const { clockContext, colorContext} =  store
-        const color = colorContext.filter((color: ColorContext) => color.active)[0].color
+    data() {
         const isOpen: boolean = false;
+        const store: Store = inject('store')
+        
         return {
             isOpen,
-            clockContext,
-            colorContext,
-            color
+            store
         }
     },
     methods: {
         handleModal() {
             this.isOpen = !this.isOpen
-        },
-        changeColor(name: string) {
-            return this.colorContext.map((color: ColorContext) => {
-                if(color.name == name) color.active = true;
-                else color.active = false;
-                return color
-            })
-        },
-        saveSettings() {
-            this.handleModal();
         }
     }
 })

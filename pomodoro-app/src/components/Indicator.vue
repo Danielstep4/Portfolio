@@ -7,24 +7,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import {ColorContext, Store} from '../global'
+import { defineComponent, inject } from 'vue'
+import { Store } from '../store/store'
 export default defineComponent({
     name: 'Indicator',
-    props: {
-        store: Object
-    },
-    data({ store }) {
-        const { clockContext, colorContext} =  store as Store;
-        const color = colorContext.filter((color: ColorContext) => color.active)[0].color
+    data() {
+        const store: Store =  inject('store');
+        const color = store.state.color
+        const clockContext = store.settings.clockContext
         return {
-            clockContext,
-            color
+            color,
+            clockContext
+
         }
     },
-    created() {
-        console.log()
-    }
 })
 
 </script>

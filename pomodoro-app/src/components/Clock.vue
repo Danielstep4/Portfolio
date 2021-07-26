@@ -15,9 +15,6 @@ import {fromNumberToTime} from '../Utils/clockLogin'
 import {Store} from '../store/store'
 export default defineComponent( {
     name: "Clock",
-    props: {
-        store: Object
-    },
     setup() {
         const store: Store = inject('store');
         return {
@@ -27,6 +24,7 @@ export default defineComponent( {
     },
     methods: {
         play(value: number) {
+            return;
             this.store.methods.decrementTime()
             const interval = setInterval(() => {
                 this.store.methods.decrementTime()

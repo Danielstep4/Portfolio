@@ -1,4 +1,4 @@
-import { ClockStateName } from "../global"
+import { ClockStateName, ClockContext, ColorContext } from "../global"
 export type State = {
     timeInSeconds: number;
     clockState: ClockStateName;
@@ -6,10 +6,13 @@ export type State = {
 }
 
 export type Settings = {
-
+    clockContext: ClockContext[];
+    colorContext: ColorContext[];
 }
 export type Methods = {
     decrementTime: () => void
+    updateState: () => void;
+    updateSettings: () => void;
 }
 export type Store = {
     state: State;
