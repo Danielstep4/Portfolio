@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-            <button class="absolute left-0 right-0 mx-auto -bottom-4 bg-red-500 px-8 py-2 rounded-full text-white" @click="saveSettings">Apply</button>
+            <button class="absolute left-0 right-0 mx-auto -bottom-4 px-8 py-2 rounded-full text-white" @click="saveSettings" :style="{backgroundColor: color}">Apply</button>
             </div>
         </div>
         <div v-if="isOpen" class="fixed top-0 left-0 w-screen h-screen z-10" @click="handleModal"></div>
@@ -50,11 +50,13 @@ export default defineComponent({
     },
     data({ store }) {
         const { clockContext, colorContext} =  store
+        const color = colorContext.filter((color: ColorContext) => color.active)[0].color
         const isOpen: boolean = false;
         return {
             isOpen,
             clockContext,
-            colorContext
+            colorContext,
+            color
         }
     },
     methods: {
