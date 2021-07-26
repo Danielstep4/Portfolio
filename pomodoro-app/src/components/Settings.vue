@@ -16,7 +16,7 @@
                         <div v-for="clock in clockContext" v-bind:key="clock.text" class="flex flex-row justify-start">
                             <div class="flex flex-col pr-8">
                                 <span class="whitespace-nowrap">{{ clock.name }}</span>
-                                <input type="number" :name="clock.text" :id="clock.text"  class="block w-full bg-gray-200 h-10 p-4" v-model="clock.value">
+                                <input type="number" :name="clock.text" :id="clock.text"  class="block w-full bg-gray-200 h-10 pl-1" v-model="clock.value">
                             </div>
                         </div>
                     </div>

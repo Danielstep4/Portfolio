@@ -21,9 +21,9 @@ export default defineComponent({
     Settings,
     Indicator
   },
-  data() {
+  setup() {
     const clockContext: ClockContext[] = [
-      { name: "Pomodoro", isActive: true, value: '25' },
+      { name: "Pomodoro", isActive: true, value: '0.25' },
       { name: "Short Break", isActive: false, value: '5'  },
       { name: "Long Break", isActive: false, value: '15'  }
     ]

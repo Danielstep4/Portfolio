@@ -1,6 +1,6 @@
-type ClockTypeName = "Pomodoro" | "Short Break" | "Long Break"
+type ClockStateName = "Pomodoro" | "Short Break" | "Long Break"
 export type ClockContext = {
-    name: ClockTypeName;
+    name: ClockStateName;
     isActive: boolean;
     value: string;
 }

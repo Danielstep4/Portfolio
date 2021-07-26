@@ -5,13 +5,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, provide } from 'vue'
+import store from './store'
 import PomodoroClock from './components/PomodoroClock.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     PomodoroClock
+  },
+  setup() {
+    provide('store', store)
   }
 })
 </script>
