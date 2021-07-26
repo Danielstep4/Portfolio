@@ -1,8 +1,8 @@
-type ClockStateName = "Pomodoro" | "Short Break" | "Long Break"
-export type ClockState = {
-    text: ClockStateName;
+type ClockTypeName = "Pomodoro" | "Short Break" | "Long Break"
+export type ClockContext = {
+    name: ClockTypeName;
     isActive: boolean;
-    value: number
+    value: string;
 }
 
 export type Theme = {
@@ -17,4 +17,8 @@ export type ColorContext = {
     name: string;
     color: string;
     active: boolean;
+}
+export type Store = {
+    clockContext: ClockContext[];
+    colorContext: ColorContext[];
 }
