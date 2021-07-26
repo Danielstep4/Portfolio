@@ -54,7 +54,7 @@ export default defineComponent({
         const store: Store = inject('store');
         return {
             isOpen,
-            store
+            store,
         }
     },
     methods: {
@@ -69,7 +69,6 @@ export default defineComponent({
             })
         },
         saveSettings() {
-            console.log(this.store.settings)
             this.store.methods.updateSettings(this.store.settings.clockContext, this.store.settings.colorContext)
             this.handleModal()
         }
