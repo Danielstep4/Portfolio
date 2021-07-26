@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import { ClockContext, ColorContext } from '../global'
 import { theme } from '../Utils/theme'
 import { State, Settings, Methods } from './store'
 // State init
@@ -30,12 +31,11 @@ const methods: Methods = {
         state.timeInSeconds = +settings.clockContext.filter(clock => clock.isActive)[0].value * 60;
         state.color = settings.colorContext.filter(color => color.active)[0].color;
     },
-    updateSettings() {
-
-    }
-
-
-
+    updateSettings(clockContext?: ClockContext[], colorContext?: ColorContext[]) {
+        if(clockContext) settings.clockContext = clockContext;
+        if(colorContext) settings.colorContext = colorContext;
+        this.updateState();
+    },
 }
 export default {
     state,

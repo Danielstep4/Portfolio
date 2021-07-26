@@ -1,6 +1,6 @@
 <template>
      <div id="indicators" class="flex flex-row text-gray-500  text-center justify-center lg:w-1/3  w-11/12 mx-auto rounded-full h-14">
-        <p v-for="clock of clockContext" v-bind:key="clock" v-bind:class="{ active: clock.isActive}" v-bind:style="{ backgroundColor: clock.isActive ? color : 'none' }" class="rounded-full whitespace-nowrap flex-1 flex justify-center items-center select-none">
+        <p v-for="clock of store.settings.clockContext" v-bind:key="clock" v-bind:class="{ active: clock.isActive}" v-bind:style="{ backgroundColor: clock.isActive ? store.state.color : 'none' }" class="rounded-full whitespace-nowrap flex-1 flex justify-center items-center select-none">
             {{ clock.name }}
         </p>
      </div>
@@ -13,12 +13,8 @@ export default defineComponent({
     name: 'Indicator',
     data() {
         const store: Store =  inject('store');
-        const color = store.state.color
-        const clockContext = store.settings.clockContext
         return {
-            color,
-            clockContext
-
+            store
         }
     },
 })

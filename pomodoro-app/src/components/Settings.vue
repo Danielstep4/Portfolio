@@ -13,7 +13,7 @@
                 <div class="p-5">
                     <span class="uppercase tracking-widest font-bold text-lg">time (minutes)</span>
                     <div class="flex flex-row" >
-                        <div v-for="clock in store.settings.clockContext" v-bind:key="clock.text" class="flex flex-row justify-start">
+                        <div v-for="clock in store.settings.clockContext" v-bind:key="clock.name" class="flex flex-row justify-start">
                             <div class="flex flex-col pr-8">
                                 <span class="whitespace-nowrap">{{ clock.name }}</span>
                                 <input type="number" :name="clock.text" :id="clock.text"  class="block w-full bg-gray-200 h-10 pl-1" v-model="clock.value">
@@ -42,13 +42,16 @@
 
 <script lang="ts">
 import {defineComponent, inject} from 'vue'
+import { ColorContext } from '../global';
 import { Store } from '../store/store';
 export default defineComponent({
     name: 'Settings',
-    data() {
+    props: {
+        store: Object
+    },
+    data() {    
         const isOpen: boolean = false;
-        const store: Store = inject('store')
-        
+        const store: Store = inject('store');
         return {
             isOpen,
             store
@@ -56,7 +59,19 @@ export default defineComponent({
     },
     methods: {
         handleModal() {
-            this.isOpen = !this.isOpen
+            this.isOpen = !this.isOpen;
+        },
+        changeColor(name: string) {
+            return this.store.settings.colorContext.map((color: ColorContext) => {
+                if(color.name == name) color.active = true;
+                else color.active = false;
+                return color
+            })
+        },
+        saveSettings() {
+            console.log(this.store.settings)
+            this.store.methods.updateSettings(this.store.settings.clockContext, this.store.settings.colorContext)
+            this.handleModal()
         }
     }
 })
