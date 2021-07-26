@@ -1,5 +1,5 @@
 <template>
-     <div id="indicators" class="flex flex-row text-gray-500  text-center justify-center w-1/3 mx-auto rounded-full h-14">
+     <div id="indicators" class="flex flex-row text-gray-500  text-center justify-center lg:w-1/3  w-11/12 mx-auto rounded-full h-14">
         <p v-for="clock of clockContext" v-bind:key="clock" v-bind:class="{ active: clock.isActive}" v-bind:style="{ backgroundColor: clock.isActive ? color : 'none' }" class="rounded-full whitespace-nowrap flex-1 flex justify-center items-center select-none">
             {{ clock.name }}
         </p>

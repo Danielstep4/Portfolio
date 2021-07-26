@@ -30,7 +30,7 @@ export default defineComponent({
     const colorContext: ColorContext[] = [
       { name: 'default', color: theme.pallete.primary, active: true},
       { name: 'blue', color: theme.pallete.secondry,  active: false},
-      { name: 'green', color: theme.pallete.success,  active: true},
+      { name: 'green', color: theme.pallete.success,  active: false},
     ]
     const store: Store = {
       colorContext,
