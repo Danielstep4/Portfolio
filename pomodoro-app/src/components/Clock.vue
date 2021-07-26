@@ -1,7 +1,7 @@
 <template>
     <div class="w-96 mx-auto h-96 my-10 rounded-full flex justify-center items-center z-40 shadow-2xl" style="background-color: #121733">
         <div class="w-80 h-80 mx-auto rounded-full flex justify-center items-center z-20 bg-red-300 relative" v-bind:style="{backgroundColor: color || 'none' }">
-            <div class="w-72 h-72 mx-auto rounded-full z-40 shadow-inner flex justify-center items-center flex-col cursor-pointer" style="background-color: #151932" >
+            <div class="w-72 h-72 mx-auto rounded-full z-40 shadow-inner flex justify-center items-center flex-col cursor-pointer" style="background-color: #151932" @click="handleClock" >
                 <span class="text-white text-8xl font-bold tracking-tighter">{{time}}</span>
                 <span class="text-white text-2xl uppercase tracking-widest">Start</span>
             </div>

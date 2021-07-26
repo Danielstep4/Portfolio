@@ -69,8 +69,6 @@ export default defineComponent({
             })
         },
         saveSettings() {
-            console.log(this.clockContext)
-            console.log(this.colorContext)
             this.handleModal();
         }
     }

@@ -1,5 +1,5 @@
 <template>
-  <main class="w-screen h-screen font-mono">
+  <main class="w-screen h-screen font-mono select-none">
   <PomodoroClock />
   </main>
 </template>
