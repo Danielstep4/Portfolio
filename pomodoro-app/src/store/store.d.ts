@@ -16,7 +16,10 @@ export type Methods = {
   pause: () => void;
   decrementTime: () => void;
   setState: (onlyColor?: boolean) => void;
-  setSettings: () => void;
+  setSettings: (
+    colorContext?: ColorContext[],
+    clockContext?: ClockContext[]
+  ) => void;
   getSettings: () => void;
 };
 export type Store = {

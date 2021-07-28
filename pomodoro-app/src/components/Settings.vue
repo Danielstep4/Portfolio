@@ -163,12 +163,11 @@ export default defineComponent({
         );
         if (confirmation) {
           this.store.methods.setSettings(
-            this.settings.clockContext,
-            this.settings.colorContext
+            this.settings.colorContext,
+            this.settings.clockContext
           );
         }
-      } else
-        this.store.methods.setSettings(undefined, this.settings.colorContext);
+      } else this.store.methods.setSettings(this.settings.colorContext);
       this.handleModal();
     },
   },

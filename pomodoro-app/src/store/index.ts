@@ -64,7 +64,7 @@ const methods: Methods = {
       (color) => color.active
     )[0].color;
   },
-  setSettings(clockContext?: ClockContext[], colorContext?: ColorContext[]) {
+  setSettings(colorContext?: ColorContext[], clockContext?: ClockContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
     this.setState(!!clockContext);
