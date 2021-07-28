@@ -157,11 +157,18 @@ export default defineComponent({
       return timeHasChanged;
     },
     saveSettings() {
-      if (this.store.state.isStarted && this.checkIfTimeHasChanged()) {
-        const confirmation = confirm(
-          "Do you sure you want to save? (The current session will reset!)"
-        );
-        if (confirmation) {
+      if (this.checkIfTimeHasChanged()) {
+        if (this.store.state.isStarted) {
+          const confirmation = confirm(
+            "Do you sure you want to save? (The current session will reset!)"
+          );
+          if (confirmation) {
+            this.store.methods.setSettings(
+              this.settings.colorContext,
+              this.settings.clockContext
+            );
+          }
+        } else {
           this.store.methods.setSettings(
             this.settings.colorContext,
             this.settings.clockContext

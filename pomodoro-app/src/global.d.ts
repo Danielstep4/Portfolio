@@ -1,18 +1,17 @@
-type ClockStateName = "Pomodoro" | "Short Break" | "Long Break"
+type ClockStateName = "Pomodoro" | "Short Break" | "Long Break";
 export type ClockContext = {
-    name: ClockStateName;
-    isActive: boolean;
-    value: string;
-}
+  name: ClockStateName;
+  value: string;
+};
 export type Theme = {
-    pallete: {
-        primary: string
-        secondry: string;
-        success: string;
-    }
-}
+  pallete: {
+    primary: string;
+    secondry: string;
+    success: string;
+  };
+};
 export type ColorContext = {
-    name: string;
-    color: string;
-    active: boolean;
-}
+  name: string;
+  color: string;
+  active: boolean;
+};

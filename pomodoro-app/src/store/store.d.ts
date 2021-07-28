@@ -12,8 +12,9 @@ export type Settings = {
   colorContext: ColorContext[];
 };
 export type Methods = {
-  play: () => void;
+  changeSession: () => void;
   pause: () => void;
+  play: () => void;
   decrementTime: () => void;
   setState: (onlyColor?: boolean) => void;
   setSettings: (

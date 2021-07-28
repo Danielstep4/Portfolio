@@ -4,7 +4,7 @@ import { theme } from "../Utils/theme";
 import { State, Settings, Methods, Intervals } from "./store";
 // State init
 const state = reactive<State>({
-  timeInSeconds: 1500,
+  timeInSeconds: 10,
   clockState: "Pomodoro",
   color: theme.pallete.primary,
   isPlaying: false,
@@ -16,9 +16,9 @@ const intervals: Intervals = {
 // Settings init
 const settings: Settings = {
   clockContext: [
-    { name: "Pomodoro", isActive: true, value: "25" },
-    { name: "Short Break", isActive: false, value: "5" },
-    { name: "Long Break", isActive: false, value: "15" },
+    { name: "Pomodoro", value: "0.25" },
+    { name: "Short Break", value: "5" },
+    { name: "Long Break", value: "15" },
   ],
   colorContext: [
     { name: "default", color: theme.pallete.primary, active: true },
@@ -28,6 +28,9 @@ const settings: Settings = {
 };
 // Methods
 const methods: Methods = {
+  changeSession() {
+    const { clockState } = state;
+  },
   pause() {
     if (intervals.clockInterval) {
       state.isPlaying = !state.isPlaying;
@@ -53,13 +56,20 @@ const methods: Methods = {
   },
   setState(onlyColor?: boolean) {
     if (!onlyColor) {
+      // Clearing interval
       this.pause();
+      // Changing State
       state.clockState = settings.clockContext.filter(
-        (clock) => clock.isActive
+        (clock) => clock.name == state.clockState
       )[0].name;
       state.timeInSeconds =
-        +settings.clockContext.filter((clock) => clock.isActive)[0].value * 60;
+        +settings.clockContext.filter(
+          (clock) => clock.name == state.clockState
+        )[0].value * 60;
+      // Clock State has changed so the clock has reseted
+      state.isStarted = !state.isStarted;
     }
+    // Changing App State Color
     state.color = settings.colorContext.filter(
       (color) => color.active
     )[0].color;
@@ -67,7 +77,7 @@ const methods: Methods = {
   setSettings(colorContext?: ColorContext[], clockContext?: ClockContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
-    this.setState(!!clockContext);
+    this.setState(!clockContext);
   },
   getSettings() {
     const clockContext = [];
