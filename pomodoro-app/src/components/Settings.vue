@@ -37,8 +37,8 @@
           <button @click="handleModal">X</button>
         </div>
         <hr />
-        <div class="p-5">
-          <span class="uppercase tracking-widest font-bold text-lg"
+        <div class="p-5 flex flex-col items-start">
+          <span class="uppercase tracking-widest font-bold text-lg pb-2"
             >time (minutes)</span
           >
           <div class="flex flex-row">
