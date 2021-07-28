@@ -16,7 +16,7 @@ export type Methods = {
   pause: () => void;
   play: () => void;
   decrementTime: () => void;
-  setState: (onlyColor?: boolean) => void;
+  setState: (clockContextChanged?: boolean) => void;
   setSettings: (
     colorContext?: ColorContext[],
     clockContext?: ClockContext[]

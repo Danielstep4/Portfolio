@@ -33,14 +33,14 @@ const methods: Methods = {
   },
   pause() {
     if (intervals.clockInterval) {
-      state.isPlaying = !state.isPlaying;
+      state.isPlaying = false;
       clearInterval(intervals.clockInterval);
     }
   },
   play() {
     if (!state.isPlaying) {
-      state.isStarted = !state.isStarted;
-      state.isPlaying = !state.isPlaying;
+      state.isStarted = true;
+      state.isPlaying = true;
       const interval = setInterval(() => {
         this.decrementTime();
         if (state.timeInSeconds == 0) clearInterval(interval);
@@ -54,8 +54,8 @@ const methods: Methods = {
   decrementTime() {
     state.timeInSeconds--;
   },
-  setState(onlyColor?: boolean) {
-    if (!onlyColor) {
+  setState(clockContextChanged?: boolean) {
+    if (clockContextChanged) {
       // Clearing interval
       this.pause();
       // Changing State
@@ -67,7 +67,7 @@ const methods: Methods = {
           (clock) => clock.name == state.clockState
         )[0].value * 60;
       // Clock State has changed so the clock has reseted
-      state.isStarted = !state.isStarted;
+      state.isStarted = false;
     }
     // Changing App State Color
     state.color = settings.colorContext.filter(
@@ -77,7 +77,7 @@ const methods: Methods = {
   setSettings(colorContext?: ColorContext[], clockContext?: ClockContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
-    this.setState(!clockContext);
+    this.setState(!!clockContext);
   },
   getSettings() {
     const clockContext = [];
