@@ -1,13 +1,17 @@
 import { reactive } from "vue";
 import { ClockContext, ColorContext } from "../global";
 import { theme } from "../Utils/theme";
-import { State, Settings, Methods } from "./store";
+import { State, Settings, Methods, Intervals } from "./store";
 // State init
 const state = reactive<State>({
   timeInSeconds: 1500,
   clockState: "Pomodoro",
   color: theme.pallete.primary,
+  isPlaying: false,
 });
+const intervals: Intervals = {
+  clockInterval: null,
+};
 // Settings init
 const settings: Settings = {
   clockContext: [
@@ -23,6 +27,22 @@ const settings: Settings = {
 };
 // Methods
 const methods: Methods = {
+  play() {
+    if (!state.isPlaying) {
+      state.isPlaying = !state.isPlaying;
+      const interval = setInterval(() => {
+        this.decrementTime();
+        if (state.timeInSeconds == 0) clearInterval(interval);
+      }, 1000);
+      console.log("im here");
+      intervals.clockInterval = interval;
+    } else {
+      if (intervals.clockInterval) {
+        state.isPlaying = !state.isPlaying;
+        clearInterval(intervals.clockInterval);
+      }
+    }
+  },
   decrementTime() {
     state.timeInSeconds--;
   },
