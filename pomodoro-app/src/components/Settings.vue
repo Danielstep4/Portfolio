@@ -51,6 +51,8 @@
                 <span class="whitespace-nowrap">{{ clock.name }}</span>
                 <input
                   type="number"
+                  min="1"
+                  max="60"
                   :name="clock.text"
                   :id="clock.text"
                   class="block w-full bg-gray-200 h-10 pl-1"

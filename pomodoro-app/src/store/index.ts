@@ -30,7 +30,6 @@ const settings: Settings = {
 };
 // Methods
 const methods: Methods = {
-  /** Switching between the clockStates and incrementing sessions every time pomodoro has finished */
   changeSession() {
     if (!state.isStarted) return;
     const { clockState } = state;
@@ -55,14 +54,14 @@ const methods: Methods = {
         break;
     }
   },
-  /** Pausing clock interval */
+
   pause() {
     if (intervals.clockInterval) {
       state.isPlaying = false;
       clearInterval(intervals.clockInterval);
     }
   },
-  /** Starting interval if does not exist already */
+
   play() {
     if (!state.isPlaying) {
       state.isStarted = true;
@@ -78,14 +77,11 @@ const methods: Methods = {
       this.pause();
     }
   },
-  /** Decrement state time */
+
   decrementTime() {
     state.timeInSeconds--;
   },
-  /** Setting the state.
-   * if the clock is already running and the clockContext in settings has been changed the clock will reset.
-   * else the it will change only the color state
-   */
+
   setState(clockContextChanged?: boolean) {
     if (clockContextChanged) {
       // Clearing interval
@@ -105,13 +101,13 @@ const methods: Methods = {
       (color) => color.active
     )[0].color;
   },
-  /** Setting  the Store settings */
+
   setSettings(colorContext?: ColorContext[], clockContext?: ClockContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
     this.setState(!!clockContext);
   },
-  /** Returning a copy of the settings object */
+
   getSettings() {
     const clockContext = [];
     const colorContext = [];
@@ -123,7 +119,7 @@ const methods: Methods = {
     }
     return { clockContext, colorContext };
   },
-  /**Returning time string from state timeInSeconds property */
+
   secondsToString(): string {
     const value: number = state.timeInSeconds;
     if (value <= 0) return "00:00";
