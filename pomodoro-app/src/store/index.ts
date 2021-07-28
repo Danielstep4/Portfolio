@@ -11,6 +11,7 @@ const state = reactive<State>({
   isStarted: false,
   sessions: 0,
 });
+// intervals object
 const intervals: Intervals = {
   clockInterval: null,
 };
