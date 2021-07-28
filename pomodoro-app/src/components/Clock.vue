@@ -24,13 +24,14 @@ export default defineComponent( {
     },
     methods: {
         play(value: number) {
-            return;
-            this.store.methods.decrementTime()
-            const interval = setInterval(() => {
-                this.store.methods.decrementTime()
-                if(this.store.state.timeInSeconds == 0) clearInterval(interval);
-            }, 1000)
-        }
+            console.log(this.store.state);
+            // this.store.methods.decrementTime()
+            // const interval = setInterval(() => {
+            //     this.store.methods.decrementTime()
+            //     if(this.store.state.timeInSeconds == 0) clearInterval(interval);
+            // }, 1000)
+        },
+
     }
 })
 </script>

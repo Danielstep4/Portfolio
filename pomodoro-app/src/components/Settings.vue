@@ -13,7 +13,7 @@
                 <div class="p-5">
                     <span class="uppercase tracking-widest font-bold text-lg">time (minutes)</span>
                     <div class="flex flex-row" >
-                        <div v-for="clock in store.settings.clockContext" v-bind:key="clock.name" class="flex flex-row justify-start">
+                        <div v-for="clock in settings.clockContext" v-bind:key="clock.name" class="flex flex-row justify-start">
                             <div class="flex flex-col pr-8">
                                 <span class="whitespace-nowrap">{{ clock.name }}</span>
                                 <input type="number" :name="clock.text" :id="clock.text"  class="block w-full bg-gray-200 h-10 pl-1" v-model="clock.value">
@@ -25,7 +25,7 @@
                 <div class="p-5 flex flex-row justify-between items-center">
                     <span class="uppercase tracking-widest font-bold text-lg">color</span>
                     <div class="flex flex-row justify-between w-min" >
-                        <div v-for="color in store.settings.colorContext" v-bind:key="color.name" @click="() => changeColor(color.name)" class="rounded-full bg-black w-10 h-10 inline-block mx-1 cursor-pointer relative flex items-center" v-bind:style="{ backgroundColor: color.color }">
+                        <div v-for="color in settings.colorContext" v-bind:key="color.name" @click="() => changeColor(color.name)" class="rounded-full bg-black w-10 h-10 inline-block mx-1 cursor-pointer relative flex items-center" v-bind:style="{ backgroundColor: color.color }">
                             <span v-if="color.active" class="mx-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                             </span>
@@ -46,30 +46,32 @@ import { ColorContext } from '../global';
 import { Store } from '../store/store';
 export default defineComponent({
     name: 'Settings',
-    props: {
-        store: Object
-    },
-    data() {    
+    data() {
         const isOpen: boolean = false;
-        const store: Store = inject('store');
+        const store: Store = inject('store'); 
+        const settings = store.methods.getSettings();
         return {
             isOpen,
             store,
+            settings
         }
     },
     methods: {
         handleModal() {
+            if(!this.isOpen) {
+                this.settings = this.store.methods.getSettings();
+            }
             this.isOpen = !this.isOpen;
         },
         changeColor(name: string) {
-            return this.store.settings.colorContext.map((color: ColorContext) => {
+            this.settings.colorContext.map((color: ColorContext) => {
                 if(color.name == name) color.active = true;
                 else color.active = false;
                 return color
             })
         },
         saveSettings() {
-            this.store.methods.updateSettings(this.store.settings.clockContext, this.store.settings.colorContext)
+            this.store.methods.setSettings(this.settings.clockContext, this.settings.colorContext)
             this.handleModal()
         }
     }
