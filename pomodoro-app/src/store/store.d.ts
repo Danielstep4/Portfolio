@@ -5,6 +5,7 @@ export type State = {
   color: string;
   isPlaying: boolean;
   isStarted: boolean;
+  sessions: number;
 };
 
 export type Settings = {
@@ -22,6 +23,7 @@ export type Methods = {
     clockContext?: ClockContext[]
   ) => void;
   getSettings: () => void;
+  secondsToString: () => string;
 };
 export type Store = {
   state: State;

@@ -4,11 +4,12 @@ import { theme } from "../Utils/theme";
 import { State, Settings, Methods, Intervals } from "./store";
 // State init
 const state = reactive<State>({
-  timeInSeconds: 10,
+  timeInSeconds: 1500,
   clockState: "Pomodoro",
   color: theme.pallete.primary,
   isPlaying: false,
   isStarted: false,
+  sessions: 0,
 });
 const intervals: Intervals = {
   clockInterval: null,
@@ -16,7 +17,7 @@ const intervals: Intervals = {
 // Settings init
 const settings: Settings = {
   clockContext: [
-    { name: "Pomodoro", value: "0.25" },
+    { name: "Pomodoro", value: "25" },
     { name: "Short Break", value: "5" },
     { name: "Long Break", value: "15" },
   ],
@@ -29,7 +30,28 @@ const settings: Settings = {
 // Methods
 const methods: Methods = {
   changeSession() {
+    if (!state.isStarted) return;
     const { clockState } = state;
+    switch (clockState) {
+      case "Pomodoro":
+        state.sessions++;
+        if (state.sessions % 4 == 0) {
+          state.clockState = settings.clockContext[2].name;
+          state.timeInSeconds = +settings.clockContext[2].value * 60;
+        } else {
+          state.clockState = settings.clockContext[1].name;
+          state.timeInSeconds = +settings.clockContext[1].value * 60;
+        }
+        break;
+      case "Short Break":
+        state.clockState = settings.clockContext[0].name;
+        state.timeInSeconds = +settings.clockContext[0].value * 60;
+        break;
+      default:
+        state.clockState = settings.clockContext[0].name;
+        state.timeInSeconds = +settings.clockContext[0].value * 60;
+        break;
+    }
   },
   pause() {
     if (intervals.clockInterval) {
@@ -43,9 +65,11 @@ const methods: Methods = {
       state.isPlaying = true;
       const interval = setInterval(() => {
         this.decrementTime();
-        if (state.timeInSeconds == 0) clearInterval(interval);
+        if (state.timeInSeconds == 0) {
+          this.changeSession();
+          // clearInterval(interval)
+        }
       }, 1000);
-      console.log("im here");
       intervals.clockInterval = interval;
     } else {
       this.pause();
@@ -60,12 +84,11 @@ const methods: Methods = {
       this.pause();
       // Changing State
       state.clockState = settings.clockContext.filter(
-        (clock) => clock.name == state.clockState
+        (clock) => clock.name == "Pomodoro"
       )[0].name;
       state.timeInSeconds =
-        +settings.clockContext.filter(
-          (clock) => clock.name == state.clockState
-        )[0].value * 60;
+        +settings.clockContext.filter((clock) => clock.name == "Pomodoro")[0]
+          .value * 60;
       // Clock State has changed so the clock has reseted
       state.isStarted = false;
     }
@@ -89,6 +112,15 @@ const methods: Methods = {
       colorContext.push(Object.assign({}, color));
     }
     return { clockContext, colorContext };
+  },
+  secondsToString(): string {
+    const value: number = state.timeInSeconds;
+    if (value <= 0) return "00:00";
+    const min = Math.floor(value / 60);
+    const seconds = value - min * 60;
+    return `${min < 10 ? "0" + min : min}:${
+      seconds < 10 ? "0" + seconds : seconds
+    }`;
   },
 };
 export default {
