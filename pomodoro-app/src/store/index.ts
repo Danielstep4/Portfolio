@@ -68,7 +68,7 @@ const methods: Methods = {
       state.isPlaying = true;
       const interval = setInterval(() => {
         this.decrementTime();
-        if (state.timeInSeconds == 0) {
+        if (state.timeInSeconds <= 0) {
           this.changeSession();
         }
       }, 1000);
