@@ -8,6 +8,7 @@ const state = reactive<State>({
   clockState: "Pomodoro",
   color: theme.pallete.primary,
   isPlaying: false,
+  isStarted: false,
 });
 const intervals: Intervals = {
   clockInterval: null,
@@ -27,8 +28,15 @@ const settings: Settings = {
 };
 // Methods
 const methods: Methods = {
+  pause() {
+    if (intervals.clockInterval) {
+      state.isPlaying = !state.isPlaying;
+      clearInterval(intervals.clockInterval);
+    }
+  },
   play() {
     if (!state.isPlaying) {
+      state.isStarted = !state.isStarted;
       state.isPlaying = !state.isPlaying;
       const interval = setInterval(() => {
         this.decrementTime();
@@ -37,21 +45,21 @@ const methods: Methods = {
       console.log("im here");
       intervals.clockInterval = interval;
     } else {
-      if (intervals.clockInterval) {
-        state.isPlaying = !state.isPlaying;
-        clearInterval(intervals.clockInterval);
-      }
+      this.pause();
     }
   },
   decrementTime() {
     state.timeInSeconds--;
   },
-  setState() {
-    state.clockState = settings.clockContext.filter(
-      (clock) => clock.isActive
-    )[0].name;
-    state.timeInSeconds =
-      +settings.clockContext.filter((clock) => clock.isActive)[0].value * 60;
+  setState(onlyColor?: boolean) {
+    if (!onlyColor) {
+      this.pause();
+      state.clockState = settings.clockContext.filter(
+        (clock) => clock.isActive
+      )[0].name;
+      state.timeInSeconds =
+        +settings.clockContext.filter((clock) => clock.isActive)[0].value * 60;
+    }
     state.color = settings.colorContext.filter(
       (color) => color.active
     )[0].color;
@@ -59,7 +67,7 @@ const methods: Methods = {
   setSettings(clockContext?: ClockContext[], colorContext?: ColorContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
-    this.setState();
+    this.setState(!!clockContext);
   },
   getSettings() {
     const clockContext = [];

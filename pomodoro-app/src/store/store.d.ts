@@ -4,6 +4,7 @@ export type State = {
   clockState: ClockStateName;
   color: string;
   isPlaying: boolean;
+  isStarted: boolean;
 };
 
 export type Settings = {
@@ -12,8 +13,9 @@ export type Settings = {
 };
 export type Methods = {
   play: () => void;
+  pause: () => void;
   decrementTime: () => void;
-  setState: () => void;
+  setState: (onlyColor?: boolean) => void;
   setSettings: () => void;
   getSettings: () => void;
 };
