@@ -35,6 +35,8 @@ export type Methods = {
   getSettings: () => void;
   /**Returning time string from state timeInSeconds property */
   secondsToString: () => string;
+  /**Returning the time progress in percentage */
+  getProgressPercentage: () => number;
 };
 export type Store = {
   state: State;

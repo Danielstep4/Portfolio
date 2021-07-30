@@ -4,7 +4,7 @@ import { theme } from "../Utils/theme";
 import { State, Settings, Methods, Intervals } from "./store";
 // State init
 const state = reactive<State>({
-  timeInSeconds: 1500,
+  timeInSeconds: 6,
   clockState: "Pomodoro",
   color: theme.pallete.primary,
   isPlaying: false,
@@ -18,9 +18,9 @@ const intervals: Intervals = {
 // Settings init
 const settings: Settings = {
   clockContext: [
-    { name: "Pomodoro", value: "25" },
-    { name: "Short Break", value: "5" },
-    { name: "Long Break", value: "15" },
+    { name: "Pomodoro", value: "0.1" },
+    { name: "Short Break", value: "0.1" },
+    { name: "Long Break", value: "0.1" },
   ],
   colorContext: [
     { name: "default", color: theme.pallete.primary, active: true },
@@ -44,24 +44,18 @@ const methods: Methods = {
           state.timeInSeconds = +settings.clockContext[1].value * 60;
         }
         break;
-      case "Short Break":
-        state.clockState = settings.clockContext[0].name;
-        state.timeInSeconds = +settings.clockContext[0].value * 60;
-        break;
       default:
         state.clockState = settings.clockContext[0].name;
         state.timeInSeconds = +settings.clockContext[0].value * 60;
         break;
     }
   },
-
   pause() {
     if (intervals.clockInterval) {
       state.isPlaying = false;
       clearInterval(intervals.clockInterval);
     }
   },
-
   play() {
     if (!state.isPlaying) {
       state.isStarted = true;
@@ -77,11 +71,9 @@ const methods: Methods = {
       this.pause();
     }
   },
-
   decrementTime() {
     state.timeInSeconds--;
   },
-
   setState(clockContextChanged?: boolean) {
     if (clockContextChanged) {
       // Clearing interval
@@ -101,13 +93,11 @@ const methods: Methods = {
       (color) => color.active
     )[0].color;
   },
-
   setSettings(colorContext?: ColorContext[], clockContext?: ClockContext[]) {
     if (clockContext) settings.clockContext = clockContext;
     if (colorContext) settings.colorContext = colorContext;
     this.setState(!!clockContext);
   },
-
   getSettings() {
     const clockContext = [];
     const colorContext = [];
@@ -119,8 +109,7 @@ const methods: Methods = {
     }
     return { clockContext, colorContext };
   },
-
-  secondsToString(): string {
+  secondsToString() {
     const value: number = state.timeInSeconds;
     if (value <= 0) return "00:00";
     const min = Math.floor(value / 60);
@@ -128,6 +117,13 @@ const methods: Methods = {
     return `${min < 10 ? "0" + min : min}:${
       seconds < 10 ? "0" + seconds : seconds
     }`;
+  },
+  getProgressPercentage() {
+    const { timeInSeconds, clockState } = state;
+    const currentSessionTimeInSeconds: number =
+      +settings.clockContext.filter((object) => object.name == clockState)[0]
+        .value * 60;
+    return timeInSeconds / currentSessionTimeInSeconds;
   },
 };
 export default {

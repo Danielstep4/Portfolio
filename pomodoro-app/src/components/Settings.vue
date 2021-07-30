@@ -103,6 +103,7 @@
           <button
             class="px-8 py-2 rounded-full text-white"
             @click="saveSettings"
+            @keypress.enter="saveSettings"
             :style="{ backgroundColor: store.state.color }"
           >
             Apply
@@ -114,6 +115,7 @@
       v-if="isOpen"
       class="fixed top-0 left-0 w-screen h-screen z-10"
       @click="handleModal"
+      @keydown.esc="handleModal"
     ></div>
   </div>
 </template>

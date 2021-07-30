@@ -34,8 +34,9 @@
         z-20
         bg-red-300
         relative
+        overflow-hidden
       "
-      v-bind:style="{ backgroundColor: store.state.color || 'none' }"
+      v-bind:style="{ backgroundColor: store.state.color || 'white' }"
     >
       <div
         class="
