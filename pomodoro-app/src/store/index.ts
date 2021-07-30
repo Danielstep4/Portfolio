@@ -4,7 +4,7 @@ import { theme } from "../Utils/theme";
 import { State, Settings, Methods, Intervals } from "./store";
 // State init
 const state = reactive<State>({
-  timeInSeconds: 6,
+  timeInSeconds: 1500,
   clockState: "Pomodoro",
   color: theme.pallete.primary,
   isPlaying: false,
@@ -18,9 +18,9 @@ const intervals: Intervals = {
 // Settings init
 const settings: Settings = {
   clockContext: [
-    { name: "Pomodoro", value: "0.1" },
-    { name: "Short Break", value: "0.1" },
-    { name: "Long Break", value: "0.1" },
+    { name: "Pomodoro", value: "25" },
+    { name: "Short Break", value: "5" },
+    { name: "Long Break", value: "15" },
   ],
   colorContext: [
     { name: "default", color: theme.pallete.primary, active: true },
