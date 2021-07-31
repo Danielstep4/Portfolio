@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
-import { CountryRestAPI, Theme } from './global';
+import { Country, CountryRestAPI, Theme } from './global';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  data: any[] = [];
+  data: Country[] = [];
   darkMode: boolean = false;
   theme: Theme = {
     pallete: {
@@ -29,12 +29,16 @@ export class AppComponent {
       const result = await axios.get('https://restcountries.eu/rest/v2/all');
       const data = result.data as CountryRestAPI.RootObject[];
       if (result.status == 200) {
-        this.data = data.slice(0, 8).map((name) => ({
-          name: name.name,
-          popultaion: name.population,
-          region: name.region,
-          capital: name.capital,
-        }));
+        this.data = data
+          .filter((_, i, arr) => i % 20 == 0)
+          .slice(0, 8)
+          .map((country) => ({
+            name: country.name,
+            population: country.population,
+            region: country.region,
+            capital: country.capital,
+            flag: country.flag,
+          }));
         console.log(this.data);
         return this.data;
       }

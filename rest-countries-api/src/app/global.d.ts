@@ -13,7 +13,13 @@ export interface Theme {
     };
   };
 }
-
+export interface Country {
+  name: string;
+  population: number;
+  region: string;
+  capital: string;
+  flag: string;
+}
 declare module CountryRestAPI {
   export interface Currency {
     code: string;
