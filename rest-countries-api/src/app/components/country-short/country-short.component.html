@@ -1,18 +1,14 @@
-<div class="shadow-2xl cursor-pointer">
-    <img src={{country.flag}} alt="c" >
-    <div class="flex flex-col text-white pb-4 px-8">
-        <h5 class="my-2 text-lg font-bold">{{ country.name }}</h5>
-        <span>Population: {{ country.population }}</span>
-        <span>Region: {{ country.region }}</span>
-        <span>Capital: {{ country.capital }}</span>
-    </div>
-
+<div class="shadow-2xl cursor-pointer rounded">
+        <img src={{country.flag}} alt={{country.name}} class="object-fill w-64 h-32 xl:w-80 xl:h-40">
+        <div class="flex flex-col text-white pb-4 pl-4">
+            <h5 class="my-2 text-md font-bold">{{ country.name }}</h5>
+            <span>Population: {{ country.population }}</span>
+            <span>Region: {{ country.region }}</span>
+            <span>Capital: {{ country.capital }}</span>
+        </div>
 </div>
 
 <style>
-    /* img {
-        max-height: 150px;
-    } */
     div.flex-col {
         background-color: #2b3743;
     }

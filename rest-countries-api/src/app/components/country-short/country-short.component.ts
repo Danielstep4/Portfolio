@@ -10,7 +10,7 @@ export class CountryShortComponent implements OnInit {
   constructor() {
     this.country = {
       name: '',
-      population: 0,
+      population: '',
       region: '',
       capital: '',
       flag: '',
