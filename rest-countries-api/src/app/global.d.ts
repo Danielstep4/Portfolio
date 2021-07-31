@@ -1,16 +1,18 @@
+export interface DarkTheme {
+  elements: string;
+  background: string;
+  text: string;
+}
+export interface LightTheme {
+  elemetns: string;
+  background: string;
+  text: string;
+  input: string;
+}
 export interface Theme {
   pallete: {
-    dark: {
-      elements: string;
-      background: string;
-      text: string;
-    };
-    light: {
-      elemetns: string;
-      background: string;
-      text: string;
-      input: string;
-    };
+    dark: DarkTheme;
+    light: LightTheme;
   };
 }
 export interface Country {

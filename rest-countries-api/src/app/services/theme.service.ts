@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Theme } from '../global';
+import { Observable, of } from 'rxjs';
+import { DarkTheme, LightTheme, Theme } from '../global';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ export class ThemeService {
   darkMode: boolean;
   theme: Theme;
   constructor() {
-    this.darkMode = false;
+    this.darkMode = true;
     this.theme = {
       pallete: {
         dark: {
@@ -24,5 +25,17 @@ export class ThemeService {
         },
       },
     };
+  }
+
+  getThemeMode(): Observable<{
+    darkMode: boolean;
+    currentTheme: DarkTheme | LightTheme;
+  }> {
+    return of({
+      darkMode: this.darkMode,
+      currentTheme: this.darkMode
+        ? this.theme.pallete.dark
+        : this.theme.pallete.light,
+    });
   }
 }
