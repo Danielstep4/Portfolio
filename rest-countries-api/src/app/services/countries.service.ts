@@ -10,7 +10,7 @@ export class CountriesService {
   constructor() {
     this.data = [];
   }
-  async loadData() {
+  async getData(): Promise<Country[]> {
     try {
       const result = await axios.get('https://restcountries.eu/rest/v2/all');
       const data = result.data as CountryRestAPI.RootObject[];
