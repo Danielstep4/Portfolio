@@ -2,6 +2,7 @@ export interface DarkTheme {
   elements: string;
   background: string;
   text: string;
+  input: string;
 }
 export interface LightTheme {
   elements: string;

@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.darkMode = darkMode;
   }
   toggleThemeMode(): void {
-    this.themeService.setThemeMode();
+    this.themeService.toggleThemeMode();
     this.updateThemeMode();
   }
 }

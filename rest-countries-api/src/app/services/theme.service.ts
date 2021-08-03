@@ -15,6 +15,7 @@ export class ThemeService {
           elements: 'hsl(209, 23%, 22%)',
           background: 'hsl(207, 26%, 17%)',
           text: 'hsl(0, 0%, 100%)',
+          input: 'hsl(209, 23%, 22%)',
         },
         light: {
           elements: 'hsl(0, 0%, 100%)',
@@ -37,7 +38,7 @@ export class ThemeService {
         : this.theme.pallete.light,
     };
   }
-  setThemeMode(): void {
+  toggleThemeMode(): void {
     this.darkMode = !this.darkMode;
   }
 }
