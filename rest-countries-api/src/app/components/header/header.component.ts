@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: LightTheme | DarkTheme | null;
   @Output() toggleTheme: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private themeService: ThemeService) {
+  constructor() {
     this.darkMode = null;
     this.currentTheme = null;
   }

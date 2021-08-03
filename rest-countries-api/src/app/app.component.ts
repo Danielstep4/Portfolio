@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Country, DarkTheme, LightTheme } from './global';
+import { Country, CountryRestAPI, DarkTheme, LightTheme } from './global';
 import { CountriesService } from './services/countries.service';
 import { ThemeService } from './services/theme.service';
 @Component({
@@ -31,5 +31,11 @@ export class AppComponent implements OnInit {
   toggleThemeMode(): void {
     this.themeService.toggleThemeMode();
     this.updateThemeMode();
+  }
+  searchByName(text?: string): void {
+    console.log(text);
+  }
+  searchByRegion(region?: CountryRestAPI.Region): void {
+    console.log(region);
   }
 }

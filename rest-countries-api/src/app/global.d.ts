@@ -56,7 +56,7 @@ declare module CountryRestAPI {
     otherAcronyms: string[];
     otherNames: string[];
   }
-
+  export type Region = 'Asia' | 'Europe' | 'Africa' | 'America' | 'Ociana';
   export interface RootObject {
     name: string;
     topLevelDomain: string[];
@@ -65,7 +65,7 @@ declare module CountryRestAPI {
     callingCodes: string[];
     capital: string;
     altSpellings: string[];
-    region: string;
+    region: Region;
     subregion: string;
     population: number;
     latlng: number[];
