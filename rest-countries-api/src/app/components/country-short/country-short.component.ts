@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Country } from 'src/app/global';
+import { DarkTheme, LightTheme } from 'src/app/global';
 
 @Component({
   selector: 'app-country-short',
@@ -7,6 +8,9 @@ import { Country } from 'src/app/global';
 })
 export class CountryShortComponent implements OnInit {
   @Input() country: Country;
+  @Input() darkMode: boolean | null;
+  @Input() currentTheme: LightTheme | DarkTheme | null;
+
   constructor() {
     this.country = {
       name: '',
@@ -15,6 +19,8 @@ export class CountryShortComponent implements OnInit {
       capital: '',
       flag: '',
     };
+    this.darkMode = null;
+    this.currentTheme = null;
   }
   ngOnInit(): void {}
 }

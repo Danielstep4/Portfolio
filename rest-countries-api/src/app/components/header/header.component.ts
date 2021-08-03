@@ -7,24 +7,14 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  darkMode: boolean | null;
-  currentTheme: LightTheme | DarkTheme | null;
+  @Input() darkMode: boolean | null;
+  @Input() currentTheme: LightTheme | DarkTheme | null;
   constructor(private themeService: ThemeService) {
     this.darkMode = null;
     this.currentTheme = null;
   }
-
-  ngOnInit(): void {
-    this.themeService.getThemeMode().subscribe(({ darkMode, currentTheme }) => {
-      this.currentTheme = currentTheme;
-      this.darkMode = darkMode;
-    });
-  }
+  ngOnInit(): void {}
   toggleThemeMode(): void {
-    this.themeService.darkMode = !this.themeService.darkMode;
-    this.themeService.getThemeMode().subscribe(({ darkMode, currentTheme }) => {
-      this.currentTheme = currentTheme;
-      this.darkMode = darkMode;
-    });
+    this.themeService.setThemeMode();
   }
 }

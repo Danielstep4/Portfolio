@@ -4,7 +4,7 @@ export interface DarkTheme {
   text: string;
 }
 export interface LightTheme {
-  elemetns: string;
+  elements: string;
   background: string;
   text: string;
   input: string;
