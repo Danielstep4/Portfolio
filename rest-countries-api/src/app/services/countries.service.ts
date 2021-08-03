@@ -8,25 +8,30 @@ import { Country, CountryRestAPI } from '../global';
 export class CountriesService {
   data: Country[];
   constructor() {
-    this.data = [];
+    this.data = JSON.parse(
+      sessionStorage.getItem('countries') || '[]'
+    ) as Country[];
   }
   async fetchData() {
-    try {
-      const result = await axios.get('https://restcountries.eu/rest/v2/all');
-      const data = result.data as CountryRestAPI.RootObject[];
-      if (result.status == 200) {
-        this.data = data.map((country) => ({
-          name: country.name,
-          population: country.population
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-          region: country.region,
-          capital: country.capital,
-          flag: country.flag,
-        }));
+    if (!this.data.length) {
+      try {
+        const result = await axios.get('https://restcountries.eu/rest/v2/all');
+        const data = result.data as CountryRestAPI.RootObject[];
+        if (result.status == 200) {
+          this.data = data.map((country) => ({
+            name: country.name,
+            population: country.population
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+            region: country.region,
+            capital: country.capital,
+            flag: country.flag,
+          }));
+          sessionStorage.setItem('countries', JSON.stringify(this.data));
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   }
   async getHomePageData(): Promise<Country[]> {
