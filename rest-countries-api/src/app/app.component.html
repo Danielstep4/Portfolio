@@ -1,4 +1,4 @@
-<main class="max-h-full relative" [style]="{backgroundColor: currentTheme ? currentTheme.background : 'black'}">
+<main class="max-h-full relative min-h-screen" [style]="{backgroundColor: currentTheme ? currentTheme.background : 'black'}">
 <app-header [darkMode]="darkMode" [currentTheme]='currentTheme' (toggleTheme)="toggleThemeMode()"></app-header>
     <app-search [darkMode]="darkMode" [currentTheme]='currentTheme'></app-search>
     <section class="lg:mx-16 md:mx-8 mx-4 pb-4 max-h-full

@@ -10,29 +10,40 @@ export class CountriesService {
   constructor() {
     this.data = [];
   }
-  async getData(): Promise<Country[]> {
+  async fetchData() {
     try {
       const result = await axios.get('https://restcountries.eu/rest/v2/all');
       const data = result.data as CountryRestAPI.RootObject[];
       if (result.status == 200) {
-        const random: number = Math.floor(Math.random() * 20);
-        this.data = data
-          .filter((_, i) => (i + 1) % random == 0)
-          .slice(0, 8)
-          .map((country) => ({
-            name: country.name,
-            population: country.population
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-            region: country.region,
-            capital: country.capital,
-            flag: country.flag,
-          }));
-        return this.data;
+        this.data = data.map((country) => ({
+          name: country.name,
+          population: country.population
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+          region: country.region,
+          capital: country.capital,
+          flag: country.flag,
+        }));
       }
     } catch (e) {
       console.log(e);
     }
-    return (this.data = []);
+  }
+  async getHomePageData(): Promise<Country[]> {
+    await this.fetchData();
+    const random: number = Math.floor(Math.random() * 20);
+    return this.data.filter((_, i) => (i + 1) % random == 0).slice(0, 8);
+  }
+  async getDataByRegion(region: string): Promise<Country[]> {
+    if (!this.data.length) {
+      await this.fetchData();
+    }
+    return this.data.filter((country) => country.region == region);
+  }
+  async getDataByName(name: string): Promise<Country[]> {
+    if (!this.data.length) {
+      await this.fetchData();
+    }
+    return this.data.filter((country) => country.name.includes(name));
   }
 }

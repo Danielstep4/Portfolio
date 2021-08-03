@@ -18,7 +18,9 @@ export class AppComponent implements OnInit {
     this.currentTheme = null;
   }
   ngOnInit(): void {
-    this.countriesService.getData().then((result) => (this.countries = result));
+    this.countriesService
+      .getHomePageData()
+      .then((result) => (this.countries = result));
     this.updateThemeMode();
   }
   updateThemeMode(): void {

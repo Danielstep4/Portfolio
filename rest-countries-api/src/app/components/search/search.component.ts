@@ -8,6 +8,7 @@ import { DarkTheme, LightTheme } from 'src/app/global';
 export class SearchComponent implements OnInit {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: LightTheme | DarkTheme | null;
+
   constructor() {
     this.darkMode = null;
     this.currentTheme = null;
