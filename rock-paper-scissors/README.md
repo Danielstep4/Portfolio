@@ -1,3 +1,1 @@
-# Rock Paper Scissors - Project
-
-### Using: Svelte & tailwind.css
+# Rock Paper Scissors | Built with Svelte & TailWindCSS

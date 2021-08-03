@@ -1,1 +1,1 @@
-# Vue 3 + Typescript + Vite + Tailwind.css
+# Pomodoro Clock | Built with Vue 3 & TailWindCSS
