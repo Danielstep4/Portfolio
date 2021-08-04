@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="absolute -top-8 sm:-left-8 pick-button left-2"
+  class="absolute -top-8 sm:-left-8 cursor-pointer left-2"
   on:click={() => pickOne("paper")}
 >
   <div
@@ -13,17 +13,11 @@
     style={"background:" + theme.platte.primary.paper}
   >
     <div
-      class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner"
+      class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner flex items-center justify-center"
     >
-      <div class="absolute left-1/3 top-1/3">
+      <div>
         <Paper />
       </div>
     </div>
   </div>
 </div>
-
-<style>
-  .pick-button:hover {
-    cursor: pointer;
-  }
-</style>

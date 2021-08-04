@@ -9,13 +9,13 @@
 <div class="my-5">
   {#if name == "paper"}
     <div
-      class="rounded-full w-40 h-40 border border-black "
+      class="rounded-full w-40 h-40 border border-black"
       style={"background:" + theme.platte.primary.paper}
     >
       <div
-        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner"
+        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner flex items-center justify-center"
       >
-        <div class="absolute left-1/3 top-1/3">
+        <div>
           <Paper />
         </div>
       </div>
@@ -23,13 +23,13 @@
   {/if}
   {#if name == "rock"}
     <div
-      class="rounded-full w-40 h-40 relative border border-black "
+      class="rounded-full w-40 h-40 relative border border-black"
       style={"background:" + theme.platte.primary.rock}
     >
       <div
-        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner"
+        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner flex items-center justify-center"
       >
-        <div class="absolute left-1/3 top-1/3">
+        <div>
           <Rock />
         </div>
       </div>
@@ -37,13 +37,13 @@
   {/if}
   {#if name == "scissors"}
     <div
-      class="rounded-full w-40 h-40 border border-black "
+      class="rounded-full w-40 h-40 border border-black"
       style={"background:" + theme.platte.primary.scissors}
     >
       <div
-        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner"
+        class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner flex items-center justify-center"
       >
-        <div class="absolute left-1/3 top-1/3">
+        <div>
           <Scissors />
         </div>
       </div>

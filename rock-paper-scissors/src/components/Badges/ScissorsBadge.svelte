@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="absolute top-0 right-2 pick-button -top-8 sm:-right-8"
+  class="absolute top-0 right-2 cursor-pointer -top-8 sm:-right-8"
   on:click={() => pickOne("scissors")}
 >
   <div
@@ -13,17 +13,11 @@
     style={"background:" + theme.platte.primary.scissors}
   >
     <div
-      class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner"
+      class="rounded-full bg-gray-200 border-black  w-32 h-32 absolute mt-4 ml-4 shadow-inner flex items-center justify-center"
     >
-      <div class="absolute left-1/3 top-1/3">
+      <div>
         <Scissors />
       </div>
     </div>
   </div>
 </div>
-
-<style>
-  .pick-button:hover {
-    cursor: pointer;
-  }
-</style>
