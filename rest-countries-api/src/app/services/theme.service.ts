@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DarkTheme, LightTheme, Theme } from '../global';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  darkMode: boolean;
+  darkModeChange: Subject<boolean> = new Subject<boolean>();
+  darkMode: boolean = true;
   theme: Theme;
   constructor() {
-    this.darkMode = true;
+    this.darkModeChange.subscribe((val) => (this.darkMode = val));
     this.theme = {
       pallete: {
         dark: {
@@ -39,6 +41,6 @@ export class ThemeService {
     };
   }
   toggleThemeMode(): void {
-    this.darkMode = !this.darkMode;
+    this.darkModeChange.next(!this.darkMode);
   }
 }

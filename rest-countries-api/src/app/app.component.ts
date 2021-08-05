@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DarkTheme, LightTheme } from './global';
 import { CountryComponent } from './pages/country/country.component';
 import { IndexComponent } from './pages/index/index.component';
