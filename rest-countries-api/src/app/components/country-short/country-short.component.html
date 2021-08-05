@@ -1,4 +1,4 @@
-<div class="shadow-2xl cursor-pointer rounded" [style]="{backgroundColor: currentTheme ? currentTheme.input : 'white'}">
+<a class="shadow-2xl cursor-pointer rounded" [style]="{backgroundColor: currentTheme ? currentTheme.input : 'white'}" routerLink="/country">
         <img src={{country.flag}} alt={{country.name}} class="object-fill w-64 h-32 xl:w-80 xl:h-40">
         <div class="flex flex-col pb-4 pl-4" [style]="{backgroundColor: currentTheme ? currentTheme.elements : 'white', color: currentTheme ? currentTheme.text : 'black'}">
             <h5 class="my-2 text-md font-bold" >{{ country.name }}</h5>
@@ -6,4 +6,4 @@
             <span>Region: {{ country.region }}</span>
             <span>Capital: {{ country.capital }}</span>
         </div>
-</div>
+</a>

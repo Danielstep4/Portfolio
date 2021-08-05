@@ -4,19 +4,27 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { CountryShortComponent } from './components/country-short/country-short.component';
-import { CountryComponent } from './components/country/country.component';
+import { CountryComponent } from './pages/country/country.component';
 import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+import { IndexComponent } from './pages/index/index.component';
 
+const routes: Routes = [
+  { path: '', component: IndexComponent },
+  { path: 'country', component: CountryComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
+    CountryComponent,
     HeaderComponent,
     SearchComponent,
     CountryShortComponent,
-    CountryComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  exports: [RouterModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, CountryComponent, IndexComponent],
 })
 export class AppModule {}

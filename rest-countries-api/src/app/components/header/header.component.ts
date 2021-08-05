@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DarkTheme, LightTheme } from 'src/app/global';
-import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-header',
