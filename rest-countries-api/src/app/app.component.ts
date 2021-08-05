@@ -10,12 +10,17 @@ export class AppComponent implements OnInit {
   countries: Country[] = [];
   darkMode: boolean | null;
   currentTheme: LightTheme | DarkTheme | null;
+  text: string;
+  region: CountryRestAPI.Region | '';
+
   constructor(
     private countriesService: CountriesService,
     private themeService: ThemeService
   ) {
     this.darkMode = null;
     this.currentTheme = null;
+    this.text = '';
+    this.region = '';
   }
   ngOnInit(): void {
     this.countriesService
@@ -35,7 +40,7 @@ export class AppComponent implements OnInit {
   searchByName(text?: string): void {
     console.log(text);
   }
-  searchByRegion(region?: CountryRestAPI.Region): void {
+  searchByRegion(region?: CountryRestAPI.Region | ''): void {
     console.log(region);
   }
 }

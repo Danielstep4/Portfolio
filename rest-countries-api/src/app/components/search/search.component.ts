@@ -5,7 +5,7 @@ import { DarkTheme, LightTheme, CountryRestAPI } from 'src/app/global';
   selector: 'app-search',
   templateUrl: './search.component.html',
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: LightTheme | DarkTheme | null;
   @Output() searchByName: EventEmitter<string> = new EventEmitter<string>();
@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
     this.darkMode = null;
     this.currentTheme = null;
   }
-  ngOnInit(): void {}
   handleChangeRegion(region: CountryRestAPI.Region | '') {
     this.searchByRegion.emit(region);
   }
