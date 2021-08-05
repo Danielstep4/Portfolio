@@ -1,41 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Country, CountryRestAPI, DarkTheme, LightTheme } from '../../global';
-import { CountriesService } from '../../services/countries.service';
-import { ThemeService } from '../../services/theme.service';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Country, CountryRestAPI, DarkTheme, LightTheme } from 'src/app/global';
+import { CountriesService } from 'src/app/services/countries.service';
+import { ThemeService } from 'src/app/services/theme.service';
 @Component({
-  selector: 'index-root',
+  selector: 'app-index',
   templateUrl: './index.component.html',
 })
-export class IndexComponent implements OnInit {
-  countries: Country[] = [];
-  darkMode: boolean | null;
-  currentTheme: LightTheme | DarkTheme | null;
+export class IndexComponent implements OnInit, OnChanges {
+  @Input() darkMode: boolean | null;
+  @Input() currentTheme: DarkTheme | LightTheme | null;
+  countries: Country[];
   text: string;
-  region: CountryRestAPI.Region | '';
+  region: string;
 
   constructor(
     private countriesService: CountriesService,
     private themeService: ThemeService
   ) {
+    this.countries = [];
     this.darkMode = null;
     this.currentTheme = null;
     this.text = '';
     this.region = '';
   }
-  ngOnInit(): void {
+  ngOnInit() {
     this.countriesService
       .getHomePageData()
       .then((result) => (this.countries = result));
-    this.updateThemeMode();
   }
-  updateThemeMode(): void {
-    const { darkMode, currentTheme } = this.themeService.getThemeMode();
-    this.currentTheme = currentTheme;
-    this.darkMode = darkMode;
-  }
-  toggleThemeMode(): void {
-    this.themeService.toggleThemeMode();
-    this.updateThemeMode();
+  ngOnChanges() {
+    console.log('hi');
   }
   searchByName(text?: string): void {
     console.log(text);
