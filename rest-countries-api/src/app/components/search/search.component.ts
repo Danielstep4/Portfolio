@@ -9,7 +9,8 @@ export class SearchComponent {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: LightTheme | DarkTheme | null;
   @Output() searchByName: EventEmitter<string> = new EventEmitter<string>();
-  @Output() searchByRegion: EventEmitter<string> = new EventEmitter<string>();
+  @Output() searchByRegion: EventEmitter<CountryRestAPI.Region | ''> =
+    new EventEmitter<CountryRestAPI.Region | ''>();
   text: string = '';
   region: CountryRestAPI.Region | '' = '';
   constructor() {
@@ -20,6 +21,6 @@ export class SearchComponent {
     this.searchByRegion.emit(region);
   }
   handleChangeText(text: string) {
-    this.searchByName.emit(text);
+    this.searchByName.emit(text.trim());
   }
 }
