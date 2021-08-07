@@ -7,6 +7,7 @@ import { CountryShortComponent } from './components/country-short/country-short.
 import { CountryComponent } from './pages/country/country.component';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './pages/index/index.component';
 
 const routes: Routes = [
@@ -22,9 +23,14 @@ const routes: Routes = [
     SearchComponent,
     CountryShortComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+  ],
   exports: [RouterModule],
   providers: [],
-  bootstrap: [AppComponent, CountryComponent, IndexComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

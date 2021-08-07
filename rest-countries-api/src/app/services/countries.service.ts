@@ -1,13 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { Country, CountryRestAPI } from '../global';
+import { Country, CountryProps, CountryRestAPI } from '../global';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountriesService {
   data: Country[];
-  constructor() {
+  constructor(private http: HttpClient) {
     this.data = JSON.parse(
       sessionStorage.getItem('countries') || '[]'
     ) as Country[];
@@ -15,6 +16,7 @@ export class CountriesService {
   async fetchData() {
     if (!this.data.length) {
       try {
+        console.log('fetching...');
         const result = await axios.get('https://restcountries.eu/rest/v2/all');
         const data = result.data as CountryRestAPI.RootObject[];
         if (result.status == 200) {
@@ -36,7 +38,9 @@ export class CountriesService {
     }
   }
   async getHomePageData(): Promise<Country[]> {
-    await this.fetchData();
+    if (!this.data.length) {
+      await this.fetchData();
+    }
     const random: number = Math.floor(Math.random() * 20);
     return this.data.filter((_, i) => (i + 1) % random == 0).slice(0, 8);
   }
@@ -56,5 +60,31 @@ export class CountriesService {
       : this.data.filter((country) =>
           country.name.toLowerCase().includes(name)
         );
+  }
+  async getOneCountry(countryID: string | null): Promise<CountryProps | void> {
+    if (!countryID) return;
+    try {
+      const result = await axios.get(
+        `https://restcountries.eu/rest/v2/alpha/${countryID}`
+      );
+      const country = result.data as CountryRestAPI.RootObject;
+      return {
+        name: country.name,
+        nativeName: country.nativeName,
+        flag: country.flag,
+        population: country.population
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+        region: country.region,
+        subregion: country.subregion,
+        capital: country.capital,
+        topLevelDomain: country.topLevelDomain.join(', '),
+        currencies: country.currencies[0].name,
+        languages: country.languages.map((lan) => lan.name).join(', '),
+        borderCountries: country.borders,
+      };
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

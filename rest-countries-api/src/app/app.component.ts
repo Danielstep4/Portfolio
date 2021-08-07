@@ -28,10 +28,7 @@ export class AppComponent implements OnInit {
     this.updateThemeMode();
   }
   onChildLoaded(component: IndexComponent | CountryComponent) {
-    if (component instanceof IndexComponent) {
-      component.currentTheme = this.currentTheme;
-      component.darkMode = this.darkMode;
-    } else if (component instanceof CountryComponent) {
-    }
+    component.currentTheme = this.currentTheme;
+    component.darkMode = this.darkMode;
   }
 }

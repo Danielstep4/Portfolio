@@ -23,7 +23,5 @@ export class CountryShortComponent implements OnInit {
     this.darkMode = null;
     this.currentTheme = null;
   }
-  ngOnInit(): void {
-    console.log(this.country.id);
-  }
+  ngOnInit(): void {}
 }

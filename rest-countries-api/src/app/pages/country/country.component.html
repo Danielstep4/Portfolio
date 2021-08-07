@@ -1,29 +1,82 @@
-<section class="flex flex-col justify-between items-start">
-    <a routerLink="/">Back</a>
-    <div class="flex flex-row justify-between items-basline">
-        <img src="" alt="">
-        <div class="flex flex-col justify-between items-start">
-            <h3 class="font-bold text-2xl"></h3>
-            <div class="flex flex-row justify-between items-baseline">
-                <div class="flex flex-col">
-                    <span>Native Name: X</span>
-                    <span>Population: X</span>
-                    <span>Region: X</span>
-                    <span>Sub Region: X</span>
-                    <span>Capital: X</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>Top Level Domain: X</span>
-                    <span>Currencies: X</span>
-                    <span>Languages: X</span>
-                </div>
-            </div>
-            <div class="flex flex-row justify-start items-baseline">
-                <span>Border Countries: </span>
-                <!-- 
-                    <a *ngFor="country of border" class="inline-block px-8 text-center">X</a>
-                 -->
-                </div>
+<section
+  class="flex flex-col justify-between items-start h-full w-full p-10"
+  [style]="{ color: currentTheme && currentTheme.text }"
+>
+  <a
+    routerLink="/"
+    class="
+      flex flex-row
+      items-center
+      justify-center
+      pl-4
+      pr-8
+      py-1
+      rounded
+      shadow-2xl
+    "
+    [style]="{ backgroundColor: currentTheme && currentTheme.elements }"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      [attr.fill]="currentTheme && currentTheme.text"
+      cl
+    >
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z" />
+    </svg>
+    Back
+  </a>
+  <div class="flex flex-row justify-around items-basline w-full mt-10 p-10">
+    <img [src]="country.flag" [alt]="country.name" class="w-2/5 shadow-2xl" />
+    <div class="flex flex-col justify-between items-start p-4 w-3/5 ml-10">
+      <h3 class="font-bold text-2xl">{{ country.name }}</h3>
+      <div class="flex flex-row justify-start items-baseline w-full">
+        <div class="flex flex-col">
+          <span>
+            <span class="font-bold">Native Name:</span>
+            {{ country.nativeName }}
+          </span>
+          <span>
+            <span class="font-bold"> Population: </span>
+            {{ country.population }}
+          </span>
+          <span>
+            <span class="font-bold"> Region: </span>
+            {{ country.region }}
+          </span>
+          <span>
+            <span class="font-bold"> Sub Region: </span>
+            {{ country.subregion }}
+          </span>
+          <span>
+            <span class="font-bold"> Capital: </span>
+            {{ country.capital }}
+          </span>
         </div>
+        <div class="flex flex-col ml-20">
+          <span>
+            <span class="font-bold"> Top Level Domain: </span>
+            {{ country.topLevelDomain }}
+          </span>
+          <span>
+            <span class="font-bold"> Currencies: </span>
+            {{ country.currencies }}
+          </span>
+          <span>
+            <span class="font-bold"> Languages: </span>
+            {{ country.languages }}
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-row justify-start items-baseline">
+        <span class="font-bold">Border Countries: </span>
+        <!-- 
+                    <a *ngFor="country of border" class="inline-block px-8 text-center">X</a>
+                    -->
+      </div>
     </div>
+  </div>
 </section>

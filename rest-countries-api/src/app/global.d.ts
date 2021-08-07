@@ -24,6 +24,19 @@ export interface Country {
   capital: string;
   flag: string;
 }
+export interface CountryProps {
+  name: string;
+  flag: string;
+  nativeName: string;
+  population: string;
+  region: CountryRestAPI.Region | '';
+  subregion: string;
+  capital: string;
+  topLevelDomain: string;
+  currencies: string;
+  languages: string;
+  borderCountries: string[];
+}
 declare module CountryRestAPI {
   export interface Currency {
     code: string;

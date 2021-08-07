@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { Country, CountryRestAPI, DarkTheme, LightTheme } from 'src/app/global';
 import { CountriesService } from 'src/app/services/countries.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -28,23 +28,21 @@ export class IndexComponent implements OnInit, DoCheck {
       this.darkMode = darkMode;
       this.currentTheme = currentTheme;
     }
-    if (!this.countries.length && !this.region && !this.text) {
-      this.homePage();
-    }
   }
   ngOnInit() {
     this.homePage();
   }
   homePage() {
-    this.countriesService
-      .getHomePageData()
-      .then((result) => (this.countries = result));
+    if (!this.countries.length) {
+      this.countriesService
+        .getHomePageData()
+        .then((result) => (this.countries = result));
+    }
   }
   saveText(text: string): void {
     this.text = text;
     this.search();
   }
-
   saveRegion(region: CountryRestAPI.Region | '') {
     this.region = region;
     this.search();
