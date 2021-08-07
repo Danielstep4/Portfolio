@@ -39,18 +39,21 @@ export class CountriesService {
     const random: number = Math.floor(Math.random() * 20);
     return this.data.filter((_, i) => (i + 1) % random == 0).slice(0, 8);
   }
-  async getDataByRegion(region: CountryRestAPI.Region): Promise<Country[]> {
+  async getFilteredData(
+    region: CountryRestAPI.Region | '',
+    name: string
+  ): Promise<Country[]> {
     if (!this.data.length) {
       await this.fetchData();
     }
-    return this.data.filter((country) => country.region == region);
-  }
-  async getDataByName(name: string): Promise<Country[]> {
-    if (!this.data.length) {
-      await this.fetchData();
-    }
-    return this.data.filter((country) =>
-      country.name.toLowerCase().includes(name)
-    );
+    return region
+      ? this.data.filter(
+          (country) =>
+            country.region == region &&
+            country.name.toLowerCase().includes(name)
+        )
+      : this.data.filter((country) =>
+          country.name.toLowerCase().includes(name)
+        );
   }
 }

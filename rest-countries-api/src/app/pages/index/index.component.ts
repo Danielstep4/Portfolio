@@ -10,7 +10,8 @@ export class IndexComponent implements OnInit, DoCheck {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: DarkTheme | LightTheme | null;
   countries: Country[];
-
+  region: CountryRestAPI.Region | '';
+  text: string;
   constructor(
     private countriesService: CountriesService,
     private themeService: ThemeService
@@ -18,6 +19,8 @@ export class IndexComponent implements OnInit, DoCheck {
     this.countries = [];
     this.darkMode = this.themeService.darkMode;
     this.currentTheme = this.themeService.getThemeMode().currentTheme;
+    this.text = '';
+    this.region = '';
   }
   ngDoCheck() {
     if (this.darkMode != this.themeService.getThemeMode().darkMode) {
@@ -34,24 +37,20 @@ export class IndexComponent implements OnInit, DoCheck {
       .getHomePageData()
       .then((result) => (this.countries = result));
   }
-  searchByName(text?: string): void {
-    if (!text) {
-      if (!this.countries.length) {
-        this.homePage();
-      }
-    } else {
-      this.countriesService
-        .getDataByName(text)
-        .then((result) => (this.countries = result));
-    }
+  saveText(text: string): void {
+    this.text = text;
+    this.search();
   }
 
-  searchByRegion(region: CountryRestAPI.Region | '') {
-    if (!region) {
-      this.homePage();
-    } else {
+  saveRegion(region: CountryRestAPI.Region | '') {
+    this.region = region;
+    this.search();
+  }
+  search() {
+    if (!this.region && !this.text) this.homePage();
+    else {
       this.countriesService
-        .getDataByRegion(region)
+        .getFilteredData(this.region, this.text)
         .then((result) => (this.countries = result));
     }
   }
