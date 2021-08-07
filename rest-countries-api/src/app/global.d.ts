@@ -35,7 +35,7 @@ export interface CountryProps {
   topLevelDomain: string;
   currencies: string;
   languages: string;
-  borderCountries: string[];
+  borders: string[];
 }
 declare module CountryRestAPI {
   export interface Currency {

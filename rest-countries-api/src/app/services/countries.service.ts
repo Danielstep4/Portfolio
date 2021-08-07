@@ -81,7 +81,7 @@ export class CountriesService {
         topLevelDomain: country.topLevelDomain.join(', '),
         currencies: country.currencies[0].name,
         languages: country.languages.map((lan) => lan.name).join(', '),
-        borderCountries: country.borders,
+        borders: country.borders,
       };
     } catch (e) {
       console.log(e);

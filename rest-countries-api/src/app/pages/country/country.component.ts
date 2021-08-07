@@ -1,5 +1,5 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, DoCheck, Input, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CountryProps, DarkTheme, LightTheme } from 'src/app/global';
 import { CountriesService } from 'src/app/services/countries.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -12,8 +12,10 @@ export class CountryComponent implements OnInit, DoCheck {
   @Input() darkMode: boolean | null;
   @Input() currentTheme: DarkTheme | LightTheme | null;
   country: CountryProps;
+  currentUrl: string;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private countriesService: CountriesService,
     private themeService: ThemeService
   ) {
@@ -28,10 +30,15 @@ export class CountryComponent implements OnInit, DoCheck {
       topLevelDomain: '',
       currencies: '',
       languages: '',
-      borderCountries: [],
+      borders: [],
     };
     this.darkMode = null;
     this.currentTheme = null;
+    this.currentUrl = this.router.url;
+    this.router.events.subscribe(() => {
+      this.currentUrl = this.router.url;
+      this.setCountry();
+    });
   }
   ngDoCheck() {
     if (this.darkMode != this.themeService.getThemeMode().darkMode) {
@@ -40,11 +47,12 @@ export class CountryComponent implements OnInit, DoCheck {
       this.currentTheme = currentTheme;
     }
   }
-  ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const countryIdFromRoute = routeParams.get('country');
+  setCountry() {
     this.countriesService
-      .getOneCountry(countryIdFromRoute)
+      .getOneCountry(this.currentUrl.replace('/', ''))
       .then((result) => (result ? (this.country = result) : undefined));
+  }
+  ngOnInit(): void {
+    this.setCountry();
   }
 }

@@ -1,34 +1,95 @@
 <section class="text-white py-8 pb-4 lg:px-16 md:px-8 px-4">
-    <form class="flex md:flex-row flex-col justify-between" >
-        <div class="shadow-2xl flex-row flex items-center" [style]="{backgroundColor: currentTheme ? currentTheme.elements : 'white'}">
-            <div class="pl-4" >
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" [attr.fill]=" currentTheme ? currentTheme.text : 'white'">
-                    <path d="M0 0h24v24H0V0z" fill="none" />
-                    <path
-                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                </svg>
-            </div>
-                <input type="text" name="text" placeholder="Search for a country..." class="px-4 md:pr-32 py-2" [(ngModel)]="text" (keyup)="handleChangeText(text)" [style]="{backgroundColor: currentTheme ? currentTheme.elements : 'white', color: currentTheme ? currentTheme.text : 'white'}">
-        </div>
-        <div class="shadow-2xl inline-block relative md:w-64 md:mt-0" [style]="{backgroundColor: currentTheme ? currentTheme.background : 'white'}">
-            <select
-                class="block appearance-none w-full px-4 py-2 pr-20 shadow leading-tight focus:outline-none focus:shadow-outline" [style]="{backgroundColor: currentTheme ? currentTheme.elements : 'white', color: currentTheme ? currentTheme.text : 'white'}"
-                name="region" [(ngModel)]="region" (change)="handleChangeRegion(region)"
-                >
-                <option value="" disabled selected hidden>Filter by Region</option>
-                <option value="">None</option>
-                <option value="Africa">Africa</option>
-                <option value="Americas">Americas</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Oceania">Oceania</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" [attr.fill]=" currentTheme ? currentTheme.text : 'white'" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-            </div>
-        </div>
-    </form>
+  <form class="flex md:flex-row flex-col justify-between">
+    <div
+      class="shadow-2xl flex-row flex items-center"
+      [style]="{
+        backgroundColor: currentTheme ? currentTheme.elements : 'white'
+      }"
+    >
+      <div class="pl-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          [attr.fill]="currentTheme ? currentTheme.text : 'white'"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+      </div>
+      <input
+        type="text"
+        name="text"
+        placeholder="Search for a country..."
+        class="px-4 md:pr-32 py-2"
+        [(ngModel)]="text"
+        (keyup)="handleChangeText(text)"
+        [style]="{
+          backgroundColor: currentTheme ? currentTheme.elements : 'white',
+          color: currentTheme ? currentTheme.text : 'white'
+        }"
+      />
+    </div>
+    <div
+      class="shadow-2xl inline-block relative md:w-64 md:mt-0 mt-2"
+      [style]="{
+        backgroundColor: currentTheme ? currentTheme.background : 'white'
+      }"
+    >
+      <select
+        class="
+          block
+          appearance-none
+          w-full
+          px-4
+          py-2
+          pr-20
+          shadow
+          leading-tight
+          focus:outline-none focus:shadow-outline
+        "
+        [style]="{
+          backgroundColor: currentTheme ? currentTheme.elements : 'white',
+          color: currentTheme ? currentTheme.text : 'white'
+        }"
+        name="region"
+        [(ngModel)]="region"
+        (change)="handleChangeRegion(region)"
+      >
+        <option value="" disabled selected hidden>Filter by Region</option>
+        <option value="">None</option>
+        <option value="Africa">Africa</option>
+        <option value="Americas">Americas</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+      </select>
+      <div
+        class="
+          pointer-events-none
+          absolute
+          inset-y-0
+          right-0
+          flex
+          items-center
+          px-2
+          text-gray-700
+        "
+      >
+        <svg
+          class="h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          [attr.fill]="currentTheme ? currentTheme.text : 'white'"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+          />
+        </svg>
+      </div>
+    </div>
+  </form>
 </section>
-
