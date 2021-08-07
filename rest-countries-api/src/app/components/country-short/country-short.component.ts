@@ -13,6 +13,7 @@ export class CountryShortComponent implements OnInit {
 
   constructor() {
     this.country = {
+      id: '',
       name: '',
       population: '',
       region: '',
@@ -22,5 +23,7 @@ export class CountryShortComponent implements OnInit {
     this.darkMode = null;
     this.currentTheme = null;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.country.id);
+  }
 }

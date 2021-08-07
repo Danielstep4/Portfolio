@@ -17,6 +17,7 @@ export interface Theme {
   };
 }
 export interface Country {
+  id: string;
   name: string;
   population: string;
   region: string;

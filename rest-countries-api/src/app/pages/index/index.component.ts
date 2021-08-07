@@ -28,6 +28,9 @@ export class IndexComponent implements OnInit, DoCheck {
       this.darkMode = darkMode;
       this.currentTheme = currentTheme;
     }
+    if (!this.countries.length && !this.region && !this.text) {
+      this.homePage();
+    }
   }
   ngOnInit() {
     this.homePage();

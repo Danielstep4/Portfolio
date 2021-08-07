@@ -11,7 +11,7 @@ import { IndexComponent } from './pages/index/index.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'country', component: CountryComponent },
+  { path: ':country', component: CountryComponent },
 ];
 @NgModule({
   declarations: [

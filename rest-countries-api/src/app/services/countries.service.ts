@@ -19,6 +19,7 @@ export class CountriesService {
         const data = result.data as CountryRestAPI.RootObject[];
         if (result.status == 200) {
           this.data = data.map((country) => ({
+            id: country.alpha2Code.toLowerCase(),
             name: country.name,
             population: country.population
               .toString()
