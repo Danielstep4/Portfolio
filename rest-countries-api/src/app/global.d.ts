@@ -70,7 +70,7 @@ declare module CountryRestAPI {
     otherAcronyms: string[];
     otherNames: string[];
   }
-  export type Region = 'Asia' | 'Europe' | 'Africa' | 'America' | 'Ociana';
+  export type Region = 'Asia' | 'Europe' | 'Africa' | 'Americas' | 'Oceania';
   export interface RootObject {
     name: string;
     topLevelDomain: string[];
