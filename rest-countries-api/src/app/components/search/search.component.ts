@@ -6,17 +6,14 @@ import { DarkTheme, LightTheme, CountryRestAPI } from 'src/app/global';
   templateUrl: './search.component.html',
 })
 export class SearchComponent {
-  @Input() darkMode: boolean | null;
-  @Input() currentTheme: LightTheme | DarkTheme | null;
+  @Input() darkMode?: boolean;
+  @Input() currentTheme?: LightTheme | DarkTheme;
   @Output() searchByName: EventEmitter<string> = new EventEmitter<string>();
   @Output() searchByRegion: EventEmitter<CountryRestAPI.Region | ''> =
     new EventEmitter<CountryRestAPI.Region | ''>();
   text: string = '';
   region: CountryRestAPI.Region | '' = '';
-  constructor() {
-    this.darkMode = null;
-    this.currentTheme = null;
-  }
+  constructor() {}
   handleChangeRegion(region: CountryRestAPI.Region | '') {
     this.searchByRegion.emit(region);
   }

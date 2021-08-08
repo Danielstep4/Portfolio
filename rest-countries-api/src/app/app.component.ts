@@ -8,13 +8,10 @@ import { ThemeService } from './services/theme.service';
   templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {
-  darkMode: boolean | null;
-  currentTheme: LightTheme | DarkTheme | null;
+  darkMode?: boolean;
+  currentTheme?: LightTheme | DarkTheme;
 
-  constructor(private themeService: ThemeService) {
-    this.darkMode = null;
-    this.currentTheme = null;
-  }
+  constructor(private themeService: ThemeService) {}
   ngOnInit(): void {
     this.updateThemeMode();
   }

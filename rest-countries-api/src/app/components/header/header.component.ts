@@ -1,19 +1,15 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DarkTheme, LightTheme } from 'src/app/global';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
-  @Input() darkMode: boolean | null;
-  @Input() currentTheme: LightTheme | DarkTheme | null;
+export class HeaderComponent {
+  @Input() darkMode?: boolean;
+  @Input() currentTheme?: LightTheme | DarkTheme;
   @Output() toggleTheme: EventEmitter<string> = new EventEmitter<string>();
-  constructor() {
-    this.darkMode = null;
-    this.currentTheme = null;
-  }
-  ngOnInit(): void {}
+  constructor() {}
   toggleThemeMode(): void {
     this.toggleTheme.emit('toggleTheme');
   }

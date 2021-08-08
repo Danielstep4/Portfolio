@@ -7,8 +7,8 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: './index.component.html',
 })
 export class IndexComponent implements OnInit, DoCheck {
-  @Input() darkMode: boolean | null;
-  @Input() currentTheme: DarkTheme | LightTheme | null;
+  @Input() darkMode: boolean;
+  @Input() currentTheme: DarkTheme | LightTheme;
   countries: Country[];
   region: CountryRestAPI.Region | '';
   text: string;
