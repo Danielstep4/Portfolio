@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Country, CountryProps, CountryRestAPI } from '../global';
@@ -8,7 +7,7 @@ import { Country, CountryProps, CountryRestAPI } from '../global';
 })
 export class CountriesService {
   data: Country[];
-  constructor(private http: HttpClient) {
+  constructor() {
     this.data = JSON.parse(
       sessionStorage.getItem('countries') || '[]'
     ) as Country[];
@@ -16,16 +15,13 @@ export class CountriesService {
   async fetchData() {
     if (!this.data.length) {
       try {
-        console.log('fetching...');
         const result = await axios.get('https://restcountries.eu/rest/v2/all');
         const data = result.data as CountryRestAPI.RootObject[];
         if (result.status == 200) {
           this.data = data.map((country) => ({
             id: country.alpha2Code.toLowerCase(),
             name: country.name,
-            population: country.population
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+            population: this.intWithCommas(country.population),
             region: country.region,
             capital: country.capital,
             flag: country.flag,
@@ -72,9 +68,7 @@ export class CountriesService {
         name: country.name,
         nativeName: country.nativeName,
         flag: country.flag,
-        population: country.population
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+        population: this.intWithCommas(country.population),
         region: country.region,
         subregion: country.subregion,
         capital: country.capital,
@@ -86,5 +80,8 @@ export class CountriesService {
     } catch (e) {
       console.log(e);
     }
+  }
+  intWithCommas(int: number) {
+    return int.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
