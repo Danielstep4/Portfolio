@@ -13,7 +13,7 @@ describe('Country Component Testing', () => {
       imports: [RouterTestingModule],
       declarations: [CountryComponent],
       providers: [
-        { provide: CountriesService, useClass: CountriesService },
+        { provide: CountriesService, useClass: MockCountriesService },
         { provide: ThemeService, useClass: MockThemeSerivce },
       ],
     }).compileComponents();
