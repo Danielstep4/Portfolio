@@ -37,6 +37,7 @@ export class CountryComponent implements OnInit, DoCheck {
       this.setCountry();
     });
   }
+
   ngDoCheck() {
     if (this.darkMode != this.themeService.getThemeMode().darkMode) {
       const { darkMode, currentTheme } = this.themeService.getThemeMode();

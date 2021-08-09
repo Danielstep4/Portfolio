@@ -1,11 +1,14 @@
 import { Input } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchComponent } from './search.component';
 
 describe('Search Component testing', () => {
+  let fixture: ComponentFixture<SearchComponent>, component: SearchComponent;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SearchComponent);
+    component = fixture.componentInstance;
+  });
   it('Region select input emits event searchByRegion', () => {
-    const fixture = TestBed.createComponent(SearchComponent);
-    const component = fixture.componentInstance;
     spyOn(component.searchByRegion, 'emit');
     const nativeElement = fixture.nativeElement;
     const selectElement = nativeElement.querySelector(
@@ -19,8 +22,6 @@ describe('Search Component testing', () => {
     });
   });
   it('Text input emits event searchByName', () => {
-    const fixture = TestBed.createComponent(SearchComponent);
-    const component = fixture.componentInstance;
     spyOn(component.searchByName, 'emit');
     const nativeElement = fixture.nativeElement;
     const input = nativeElement.querySelector('input') as HTMLSelectElement;
