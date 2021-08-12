@@ -53,8 +53,8 @@
                   type="number"
                   min="1"
                   max="60"
-                  :name="clock.text"
-                  :id="clock.text"
+                  :name="clock.name"
+                  :id="clock.name"
                   class="block w-full bg-gray-200 h-10 pl-1"
                   v-model="clock.value"
                 />
@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-        <div class="absolute right-0 left-0 mx-auto -bottom-4">
+        <div class="absolute right-0 left-0 mx-auto md:-bottom-4 bottom-2">
           <button
             class="px-8 py-2 rounded-full text-white"
             @click="saveSettings"
@@ -128,7 +128,7 @@ export default defineComponent({
   name: "Settings",
   data() {
     const isOpen: boolean = false;
-    const store: Store = inject("store");
+    const store: Store = inject("store")! as Store;
     const settings = store.methods.getSettings();
     return {
       isOpen,

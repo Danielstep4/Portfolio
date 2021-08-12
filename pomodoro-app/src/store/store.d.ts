@@ -32,7 +32,10 @@ export type Methods = {
     clockContext?: ClockContext[]
   ) => void;
   /** Returning a copy of the settings object */
-  getSettings: () => void;
+  getSettings: () => {
+    clockContext: ClockContext[];
+    colorContext: ColorContext[];
+  };
   /**Returning time string from state timeInSeconds property */
   secondsToString: () => string;
   /**Returning the time progress in percentage */

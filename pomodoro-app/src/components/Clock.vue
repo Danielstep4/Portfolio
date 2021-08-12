@@ -36,7 +36,9 @@
         relative
         overflow-hidden
       "
-      v-bind:style="{ backgroundColor: !store.state.color || 'white' }"
+      v-bind:style="{
+        backgroundColor: 'white',
+      }"
     >
       <div
         class="
@@ -103,7 +105,7 @@ import { Store } from "../store/store";
 export default defineComponent({
   name: "Clock",
   setup() {
-    const store: Store = inject("store");
+    const store: Store = inject("store")! as Store;
     return {
       store,
     };

@@ -14,11 +14,11 @@
   >
     <p
       v-for="clock of store.methods.getSettings().clockContext"
-      v-bind:key="clock"
+      v-bind:key="clock.name"
       v-bind:class="{ active: store.state.clockState == clock.name }"
       v-bind:style="{
         backgroundColor:
-          store.state.clockState == clock.name ? store.state.color : 'none',
+          store.state.clockState == clock.name ? store.state.color : 'inherit',
       }"
       class="
         rounded-full
@@ -40,7 +40,7 @@ import { Store } from "../store/store";
 export default defineComponent({
   name: "Indicator",
   data() {
-    const store: Store = inject("store");
+    const store: Store = inject("store")! as Store;
     return {
       store,
     };
