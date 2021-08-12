@@ -16,7 +16,7 @@
     "
     [style]="{
       backgroundColor: currentTheme && currentTheme.elements,
-      boxShadow: !darkMode && '0 0 10px #ccc'
+      boxShadow: !darkMode ? '0 0 10px #ccc' : 'none'
     }"
   >
     <svg
@@ -103,7 +103,7 @@
         <span class="font-bold">Border Countries: </span>
         <!-- prettier-ignore -->
         <div class="flex flex-row flex-wrap w-full">
-            <a *ngFor="let border of country.borders" class="inline-block md:px-8 px-2 text-center md:ml-4 ml-2 mb-2 md:mb-4 my-2" [style]="{backgroundColor: currentTheme && currentTheme.elements, boxShadow: !darkMode && '0 0 10px #ccc'}" routerLink="{{'/' + border.toLowerCase()}}"
+            <a *ngFor="let border of country.borders" class="inline-block md:px-8 px-2 text-center md:ml-4 ml-2 mb-2 md:mb-4 my-2" [style]="{backgroundColor: currentTheme && currentTheme.elements, boxShadow: !darkMode ? '0 0 10px #ccc': 'none'}" routerLink="{{'/' + border.toLowerCase()}}"
             >{{border}}</a
             >
         </div>
