@@ -15,15 +15,16 @@
 }
 html {
     font-size: 62.5%;
-    height: 100%;
+    min-height: 100%;
 }
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url(../assets/background.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     font-weight: 400;
     color: #fff;
-    height: 100%;
+    min-height: 100vh;
 }
 a {
     color: inherit;
