@@ -51,7 +51,7 @@ main {
     gap: 3.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     main {
         padding: 1rem;
         width: 100vw;
@@ -84,5 +84,4 @@ main {
         margin: .5rem auto;
         width: 100%;
     }
-
-}
+} 
