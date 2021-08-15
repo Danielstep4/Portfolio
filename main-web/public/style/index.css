@@ -10,6 +10,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 }
 .welcome__content--container {
     width: 50%;
@@ -17,6 +18,7 @@ main {
 .welcome__title {
     font-size: 4.8rem;
     font-weight: 700;
+    width: 50rem;
 }
 .welcome__subtitle {
     margin: 3rem 0;
@@ -70,6 +72,7 @@ main {
     }
     .welcome__title {
         font-size: 3.6rem;
+        width: auto;
     }
     .welcome__skills--container {
         margin-top: 1rem;

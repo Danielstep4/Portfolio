@@ -90,7 +90,7 @@ a {
 
 @media only screen and (max-width: 768px) {
     .navbar__toggler {
-        position: fixed;
+        position: absolute;
         z-index: 2;
         margin: 1rem;
         cursor: pointer;
