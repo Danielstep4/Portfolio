@@ -1,0 +1,27 @@
+#about {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem 10rem;
+    justify-content: space-around;
+}
+#about img {
+    width: 47.5rem;
+    height: 70rem;
+}
+.about__article {
+    width: 68rem;
+}
+.about__title {
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+}
+.about__title--red {
+    color: var(--font-red);
+}
+.about__content {
+    font-size: 2rem;
+
+}
+.about__content p {
+    margin-bottom: 1rem;
+}
