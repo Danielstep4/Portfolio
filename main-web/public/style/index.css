@@ -7,7 +7,12 @@ main {
 }
 #welcome {
     font-family: 'Roboto Slab', serif;
-    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.welcome__content--container {
+    width: 50%;
 }
 .welcome__title {
     font-size: 4.8rem;
@@ -33,4 +38,10 @@ main {
     font-weight: 700;
     font-size: 1.8rem;
     height: 5.8rem;
+}
+.welcome__skills--container {
+    display: grid;
+    padding-left: 15rem;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 6.4rem;
 }
