@@ -44,4 +44,42 @@ main {
     padding-left: 15rem;
     grid-template-columns: repeat(3, 1fr);
     font-size: 6.4rem;
+    justify-content: center;
+    justify-items: center;
+    gap: 3.5rem;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+        width: 100vw;
+    }
+    #welcome {
+        padding-top: 2.4rem;
+        flex-direction: column;
+        height: 100%;
+        width: 100vw;
+    }
+    .welcome__content--container {
+        padding: 1rem;
+        width: 100%;
+    }
+    .welcome__btn-container {
+        flex-direction: column;
+        padding: 0 .5rem;
+    }
+    .welcome__title {
+        font-size: 3.6rem;
+    }
+    .welcome__skills--container {
+        margin-top: 1rem;
+        padding: 1rem;
+        font-size: 6.4rem;
+        gap: 1rem;
+    }
+    .btn__read-more,.btn__github {
+        margin: .5rem auto;
+        width: 100%;
+    }
+
 }
