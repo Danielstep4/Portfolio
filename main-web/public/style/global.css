@@ -109,15 +109,17 @@ a {
         padding: 0;
         align-items: center;
         justify-content: flex-start;
+        height: 100%;
     }
     .mobile-active {
         position: absolute;
         left: 0;
         top: 0;
+        bottom: 0;
+        right: 0;
         display: flex;
         flex-direction: column;
         background-color: #090909;
-        height: 100vh;
         width: 100vw;
         padding: 1rem 0;
     }
