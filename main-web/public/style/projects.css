@@ -26,9 +26,9 @@ main {
     margin-top: 2rem;
     filter: drop-shadow(4px 4px 8px rgba(235, 235, 235, 0.25));
 }
-#small-projects {
+/* #small-projects {
     padding-top: 5rem;
-}
+} */
 .small-projects__title {
     font-size: 3.6rem;
     margin: 2rem 0;
