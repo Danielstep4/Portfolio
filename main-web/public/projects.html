@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style/global.css" />
+    <link rel="stylesheet" href="style/projects.css" />
+    <title>Daniel Stepanishin - Projects</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <head>
+      <nav class="navbar">
+        <!-- Web links -->
+        <div class="navbar__web-links">
+          <div class="navbar__logo">Daniel Stepanishin</div>
+          <div class="navbar__links">
+            <div class="navbar__link">
+              <a href="/">Home</a>
+            </div>
+            <div class="navbar__link active-link">
+              <a href="./projects.html">Projects</a>
+            </div>
+            <div class="navbar__link">
+              <a href="./about.html">About me</a>
+            </div>
+          </div>
+        </div>
+        <!-- Social media links -->
+        <div class="navbar__social-links">
+          <a href="mailto:danielstepanishin@gmail.com" target="_blank"
+            ><i class="fas fa-at"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/daniel-stepanishin"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://www.github.com/danielstep4" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="https://www.instagram.com/stepanishin_" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/daniel.stepanishin" target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+        </div>
+      </nav>
+    </head>
+    <!-- Navbar -->
+    <main>
+      <section id="big-project">
+        <div class="big-project__details">
+          <h3 class="big-project__details--title">Big Project</h3>
+          <span class="big-project__details--subtitle"
+            >Online course provider for a small company. (work in
+            progress)</span
+          >
+          <div>
+            <span>This site implements:</span>
+            <ul class="big-project__bullets">
+              <li>Backend (Next.js functions)</li>
+              <li>Database (MongoDB)</li>
+              <li>Authentication (Next-auth, JWT)</li>
+              <li>Frondend (Next.js, React)</li>
+              <li>Styling (Material-UI, Sass)</li>
+              <li>Devlopment (Jest, TypeScript)</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <img
+            class="big-project__snapshot"
+            src="./assets/big-project-image.png"
+            alt="big-porject-snapshot"
+          />
+        </div>
+      </section>
+      <section id="small-projects">
+        <h3 class="small-projects__title">Small Projects</h3>
+        <div class="small-projects__cards">
+          <a
+            class="small-projects__card"
+            href="https://www.google.com"
+            target="_blank"
+          >
+            <img
+              src="./assets/Rock-Paper-Scissors-snapshot.png"
+              alt="Rock Paper Scissors snapshot"
+            />
+            <div class="small-projects__card--title">
+              <h2>Rock Paper Scissors</h2>
+            </div>
+          </a>
+          <a class="small-projects__card">
+            <img src="./assets/Pomodoro-snapshot.png" alt="Pomodoro snapshot" />
+            <div class="small-projects__card--title">
+              <h2>Pomodoro Clock</h2>
+            </div>
+          </a>
+          <a class="small-projects__card">
+            <img
+              src="./assets/Countries-snapshot.png"
+              alt="Countries snapshot"
+            />
+            <div class="small-projects__card--title">
+              <h2>Rest Countries API</h2>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
