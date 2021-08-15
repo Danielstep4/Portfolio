@@ -106,13 +106,13 @@ a {
     }
     .navbar {
         display: none;
-        padding: 0;
+    }
+    .navbar.mobile-active {
         align-items: center;
         justify-content: flex-start;
-        height: 100%;
-    }
-    .mobile-active {
-        position: absolute;
+        min-height: 100vh;
+        padding: 0;
+        position: fixed;
         left: 0;
         top: 0;
         bottom: 0;
