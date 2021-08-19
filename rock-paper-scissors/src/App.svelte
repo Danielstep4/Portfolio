@@ -1,9 +1,8 @@
 <script lang="ts">
   import Game from "./components/Game.svelte";
-  import { theme } from "./styles/theme";
 </script>
 
-<main style={"background:" + theme.platte.background} class="h-screen w-screen">
+<main>
   <Game />
 </main>
 
@@ -17,6 +16,9 @@
     box-sizing: border-box;
   }
   body {
-    padding: 0;
+    min-height: 100%;
+    background: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+    background-repeat: no-repeat;
+    background-color: hsl(237, 49%, 15%);
   }
 </style>

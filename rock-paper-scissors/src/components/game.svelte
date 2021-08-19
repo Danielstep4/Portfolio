@@ -17,7 +17,7 @@
   const pickOne = (e: PickChoices) => playerPickStore.update(() => e);
 </script>
 
-<main class="py-10">
+<div class="py-10">
   <svelte:component this={ScoreBoard} {score} />
   {#if !currentPick}
     <Pick {pickOne} />
@@ -26,4 +26,4 @@
     <Play {currentPick} {scoreStore} {playerPickStore} />
   {/if}
   <RulesModal />
-</main>
+</div>
