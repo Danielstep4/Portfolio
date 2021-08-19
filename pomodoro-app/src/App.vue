@@ -1,27 +1,21 @@
 <template>
-  <main class="w-screen h-screen font-mono select-none">
-  <PomodoroClock />
+  <main class="w-screen min-h-full font-mono select-none">
+    <PomodoroClock />
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
-import store from './store'
-import PomodoroClock from './components/PomodoroClock.vue'
+import { defineComponent, provide } from "vue";
+import store from "./store";
+import PomodoroClock from "./components/PomodoroClock.vue";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    PomodoroClock
+    PomodoroClock,
   },
   setup() {
-    provide('store', store)
-  }
-})
+    provide("store", store);
+  },
+});
 </script>
-
-<style>
-  main {
-    background: rgba(30,33,64,255);
-  }
-</style>
