@@ -18,6 +18,6 @@ export class SearchComponent {
     this.searchByRegion.emit(region);
   }
   handleChangeText(text: string) {
-    this.searchByName.emit(text.trim());
+    this.searchByName.emit(text.trim().toLowerCase());
   }
 }
