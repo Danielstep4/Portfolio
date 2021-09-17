@@ -24,9 +24,9 @@
         type="text"
         name="text"
         placeholder="Search for a country..."
-        class="px-4 md:pr-32 py-2"
+        class="px-4 md:pr-32 py-2 w-100"
         [(ngModel)]="text"
-        (keyup)="handleChangeText(text)"
+        (ngModelChange)="handleChangeText(text)"
         [style]="{
           backgroundColor: currentTheme ? currentTheme.elements : 'white',
           color: currentTheme ? currentTheme.text : 'white'
