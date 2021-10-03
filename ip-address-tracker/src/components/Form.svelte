@@ -16,18 +16,30 @@
     Math.floor(Math.random() * 255) +
     "." +
     Math.floor(Math.random() * 255);
-  const handleSubmit = async (e: Event) => {
-    e.preventDefault();
+
+  const getData = async () => {
     if (checkIPAddressIPv4(ipAddress)) {
-      // const response = await fetch(GEO_URL + ipAddress);
-      // const result = (await response.json()) as IPResponse;
-      // console.log(JSON.stringify(result));
-      const dummy_response = JSON.parse(
-        `{"ip":"35.253.100.132","location":{"country":"US","region":"Colorado","city":"Waterton","lat":39.4936,"lng":-105.0886,"postalCode":"","timezone":"-06:00","geonameId":5443367},"as":{"asn":3549,"name":"Lumen AS 3549","route":"35.248.0.0/13","domain":"","type":"NSP"},"isp":"tw telecom holdings, inc.","proxy":{"proxy":false,"vpn":false,"tor":false}}`
-      );
-      IPInfo.set(dummy_response);
+      const cachedInfo = sessionStorage.getItem(ipAddress);
+      if (!!cachedInfo) {
+        const cachedInfoObj = JSON.parse(cachedInfo) as IPResponse;
+        IPInfo.set(cachedInfoObj);
+      } else {
+        try {
+          const response = await fetch(GEO_URL + ipAddress);
+          const result = (await response.json()) as IPResponse;
+          IPInfo.set(result);
+          sessionStorage.setItem(ipAddress, JSON.stringify(result));
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
+  const handleSubmit = (e: Event) => {
+    e.preventDefault();
+    getData();
+  };
+  window.onload = () => getData();
 </script>
 
 <main
