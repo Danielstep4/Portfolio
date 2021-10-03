@@ -1,7 +1,13 @@
 <script lang="ts">
+  import L from "leaflet";
+  import { onMount } from "svelte";
+
   export let mapProps: MapProps;
+  onMount(() => {
+    console.log(mapProps);
+  });
 </script>
 
 <main>
-  <h1>Map</h1>
+  <div id="map" style="height: 180px" />
 </main>

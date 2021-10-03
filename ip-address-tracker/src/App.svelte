@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import { writable } from "svelte/store";
   import Form from "./components/form.svelte";
   import InfoBar from "./components/InfoBar.svelte";
@@ -10,7 +11,7 @@
   let infoBarProps: InfoBarProps;
   let mapProps: MapProps;
   // Subscriber to handle changes
-  IPInfo.subscribe((val) => {
+  const unsubscribe = IPInfo.subscribe((val) => {
     if (val !== null) {
       infoBarProps = {
         ip: val.ip,
@@ -26,6 +27,8 @@
       };
     }
   });
+  // Clearing Subscriber
+  onDestroy(() => unsubscribe());
 </script>
 
 <main class="w-full">

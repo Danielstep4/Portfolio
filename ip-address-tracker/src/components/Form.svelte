@@ -3,20 +3,22 @@
   import { checkIPAddressIPv4 } from "../utils/formHelper";
   import { GEO_URL } from "../geoUrl";
   import { Writable } from "svelte/store";
+  import { onMount } from "svelte";
 
   export let IPInfo: Writable<IPResponse | null>;
 
   const bgImage = "/assets/pattern-bg.png";
-  let ipAddress =
-    Math.floor(Math.random() * 255) +
-    1 +
-    "." +
-    Math.floor(Math.random() * 255) +
-    "." +
-    Math.floor(Math.random() * 255) +
-    "." +
-    Math.floor(Math.random() * 255);
-
+  // let ipAddress =
+  //   Math.floor(Math.random() * 255) +
+  //   1 +
+  //   "." +
+  //   Math.floor(Math.random() * 255) +
+  //   "." +
+  //   Math.floor(Math.random() * 255) +
+  //   "." +
+  //   Math.floor(Math.random() * 255);
+  let ipAddress = "139.236.226.201";
+  // Get data function and caching data
   const getData = async () => {
     if (checkIPAddressIPv4(ipAddress)) {
       const cachedInfo = sessionStorage.getItem(ipAddress);
@@ -35,11 +37,13 @@
       }
     }
   };
+  // On Submit get the ip data the user writen
   const handleSubmit = (e: Event) => {
     e.preventDefault();
     getData();
   };
-  window.onload = () => getData();
+  // On Mount get the random ip data
+  onMount(() => getData());
 </script>
 
 <main
