@@ -1,13 +1,37 @@
 <script lang="ts">
+  import { writable } from "svelte/store";
   import Form from "./components/form.svelte";
   import InfoBar from "./components/InfoBar.svelte";
   import Map from "./components/Map.svelte";
+
+  // IPInfo Store
+  const IPInfo = writable<IPResponse | null>(null);
+  // Components Props State
+  let infoBarProps: InfoBarProps;
+  let mapProps: MapProps;
+  // Subscriber to handle changes
+  IPInfo.subscribe((val) => {
+    if (val !== null) {
+      infoBarProps = {
+        ip: val.ip,
+        isp: val.isp,
+        timezone: val.location.timezone,
+        location: `${val.location.city}, ${val.location.country}, ${
+          val.location.postalCode || val.location.region
+        }`,
+      };
+      mapProps = {
+        lat: val.location.lat,
+        lng: val.location.lng,
+      };
+    }
+  });
 </script>
 
-<main>
-  <Form />
-  <InfoBar />
-  <Map />
+<main class="w-full">
+  <Form {IPInfo} />
+  <InfoBar {infoBarProps} />
+  <Map {mapProps} />
 </main>
 
 <style global lang="postcss">
