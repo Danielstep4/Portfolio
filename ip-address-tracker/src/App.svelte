@@ -5,15 +5,18 @@
 </script>
 
 <main>
-  <h1>
-    <Form />
-    <InfoBar />
-    <Map />
-  </h1>
+  <Form />
+  <InfoBar />
+  <Map />
 </main>
 
 <style global lang="postcss">
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 </style>
