@@ -8,10 +8,12 @@
     ? [
         { name: "ip address", value: infoBarProps.ip },
         { name: "location", value: infoBarProps.location },
-        { name: "timezone", value: "UTC" + infoBarProps.timezone },
+        { name: "timezone", value: "UTC " + infoBarProps.timezone },
         { name: "isp", value: infoBarProps.isp },
       ]
     : [];
+  $: isPrivate =
+    !!infoBarProps && (!infoBarProps.isp || !infoBarProps.timezone);
 </script>
 
 <main
@@ -19,6 +21,8 @@
 >
   {#if isLoading}
     <h1 class="mx-auto">Loading...</h1>
+  {:else if isPrivate}
+    <h1 class="mx-auto font-bold text-red-500">Error! Private IP Address.</h1>
   {:else if !!infoBarProps}
     {#each data as object, i}
       {#if i}
@@ -38,6 +42,8 @@
       </div>
     {/each}
   {:else}
-    <h1>Error! Please try again later.</h1>
+    <h1 class="mx-auto font-bold text-red-500">
+      Error! Please try again later.
+    </h1>
   {/if}
 </main>

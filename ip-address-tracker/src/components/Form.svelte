@@ -20,6 +20,7 @@
   let ipAddress = "139.236.226.201";
   // Get data function and caching data
   const getData = async () => {
+    ipAddress = ipAddress.trim();
     if (checkIPAddressIPv4(ipAddress)) {
       const cachedInfo = sessionStorage.getItem(ipAddress);
       if (!!cachedInfo) {
@@ -40,6 +41,7 @@
   // On Submit get the ip data the user writen
   const handleSubmit = (e: Event) => {
     e.preventDefault();
+    IPInfo.set(null);
     getData();
   };
   // On Mount get the random ip data

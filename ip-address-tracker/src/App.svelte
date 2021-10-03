@@ -25,6 +25,9 @@
         lat: val.location.lat,
         lng: val.location.lng,
       };
+    } else {
+      infoBarProps = undefined;
+      mapProps = undefined;
     }
   });
   // Clearing Subscriber
