@@ -24,6 +24,7 @@
       mapProps = {
         lat: val.location.lat,
         lng: val.location.lng,
+        isp: val.isp,
       };
     } else {
       infoBarProps = undefined;
