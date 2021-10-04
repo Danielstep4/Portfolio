@@ -5,7 +5,7 @@
 
   let map: L.Map;
 
-  const createMap = (lat: number, lng: number, isp: string) => {
+  const createMap = (lat: number, lng: number, text: string) => {
     if (map) {
       map.setView([lat, lng], 13);
 
@@ -14,7 +14,7 @@
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         zIndex: 999,
       }).addTo(map);
-      L.marker([lat, lng]).addTo(map).bindPopup(isp).openPopup();
+      L.marker([lat, lng]).addTo(map).bindPopup(text).openPopup();
     }
   };
   const initMap = (node: HTMLElement, props: MapProps) => {
@@ -22,8 +22,8 @@
     return {
       update(props: MapProps) {
         if (!!props) {
-          const { lat, lng, isp } = props;
-          createMap(lat, lng, isp);
+          const { lat, lng, text } = props;
+          createMap(lat, lng, text);
         }
       },
       destroy() {

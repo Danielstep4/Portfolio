@@ -4,9 +4,11 @@
   import { GEO_URL } from "../geoUrl";
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
+  import InfoBar from "./InfoBar.svelte";
 
   export let IPInfo: Writable<IPResponse | null>;
 
+  let infoBarProps: InfoBarProps;
   const bgImage = "/assets/pattern-bg.png";
   // let ipAddress =
   //   Math.floor(Math.random() * 255) +
@@ -18,6 +20,18 @@
   //   "." +
   //   Math.floor(Math.random() * 255);
   let ipAddress = "139.236.226.201";
+  /** Populates the IPInfo store and infobarProps state */
+  const populateState = (val: IPResponse) => {
+    IPInfo.set(val);
+    infoBarProps = {
+      ip: val.ip,
+      isp: val.isp,
+      timezone: val.location.timezone,
+      location: `${val.location.city}, ${val.location.country}, ${
+        val.location.postalCode || val.location.region
+      }`,
+    };
+  };
   // Get data function and caching data
   const getData = async () => {
     ipAddress = ipAddress.trim();
@@ -25,12 +39,12 @@
       const cachedInfo = sessionStorage.getItem(ipAddress);
       if (!!cachedInfo) {
         const cachedInfoObj = JSON.parse(cachedInfo) as IPResponse;
-        IPInfo.set(cachedInfoObj);
+        populateState(cachedInfoObj);
       } else {
         try {
           const response = await fetch(GEO_URL + ipAddress);
           const result = (await response.json()) as IPResponse;
-          IPInfo.set(result);
+          populateState(result);
           sessionStorage.setItem(ipAddress, JSON.stringify(result));
         } catch (e) {
           console.log(e);
@@ -44,6 +58,7 @@
   const handleSubmit = (e: Event) => {
     e.preventDefault();
     IPInfo.set(null);
+    infoBarProps = undefined;
     getData();
   };
   // On Mount get the random ip data
@@ -51,10 +66,12 @@
 </script>
 
 <main
-  class="bg-cover text-center md:p-5 flex items-center flex-col justify-center w-full"
-  style="background-image: url('{bgImage}'); height: 33.34vh"
+  class="bg-cover text-center md:p-5 flex items-center flex-col justify-center w-full relative"
+  style="background-image: url('{bgImage}'); min-height: 33.34vh"
 >
-  <h1 class="text-3xl text-white my-7 font-bold">IP Address Tracker</h1>
+  <h1 class="text-3xl text-white mb-7 md:mt-0 mt-1 font-bold">
+    IP Address Tracker
+  </h1>
   <form class="flex md:mb-24 mb-60 md:w-1/4">
     <input
       type="text"
@@ -79,4 +96,5 @@
       >
     </button>
   </form>
+  <InfoBar {infoBarProps} />
 </main>

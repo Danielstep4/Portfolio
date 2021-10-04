@@ -17,8 +17,7 @@
 </script>
 
 <main
-  class="bg-white md:w-3/4 w-5/6 mx-auto shadow-2xl flex md:flex-row flex-col items-center justify-between md:p-10 p-2 rounded-xl z-1000 absolute left-0 right-0 transform -translate-y-1/2"
-  style="top: 33.34vh;"
+  class="bg-white w-5/6 mx-auto shadow-2xl flex md:flex-row flex-col items-center justify-between md:p-10 p-2 rounded-xl z-1000 absolute left-0 right-0 bottom-0 transform translate-y-1/2"
 >
   {#if isLoading}
     <h1 class="mx-auto">Loading...</h1>
@@ -35,11 +34,13 @@
         class="flex flex-col md:justify-start md:items-start items-center  mb-5 md:mb-0"
       >
         <span
-          class="md:mb-3 mb-1 font-bold"
+          class="md:mb-3 mb-1 font-bold select-none"
           style="color: {theme.palette.grey.dark};"
           >{object.name.toUpperCase()}</span
         >
-        <span class="font-bold text-xl capitalize">{object.value}</span>
+        <span class="font-bold text-xl capitalize text-center"
+          >{object.value}</span
+        >
       </div>
     {/each}
   {:else}

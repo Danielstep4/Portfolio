@@ -38,5 +38,5 @@ interface InfoBarProps {
 interface MapProps {
   lat: number;
   lng: number;
-  isp: string;
+  text: string;
 }
