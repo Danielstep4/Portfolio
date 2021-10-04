@@ -17,7 +17,8 @@
 </script>
 
 <main
-  class="bg-white md:w-3/4 w-5/6 mx-auto shadow-2xl flex md:flex-row flex-col items-center justify-between p-10 rounded-xl z-10 transform -translate-y-1/2"
+  class="bg-white md:w-3/4 w-5/6 mx-auto shadow-2xl flex md:flex-row flex-col items-center justify-between md:p-10 p-2 rounded-xl z-1000 absolute left-0 right-0 transform -translate-y-1/2"
+  style="top: 33.34vh;"
 >
   {#if isLoading}
     <h1 class="mx-auto">Loading...</h1>

@@ -34,7 +34,7 @@
   onDestroy(() => unsubscribe());
 </script>
 
-<main class="w-full">
+<main class="w-full flex flex-col h-screen">
   <Form {IPInfo} />
   <InfoBar {infoBarProps} />
   <Map {mapProps} />

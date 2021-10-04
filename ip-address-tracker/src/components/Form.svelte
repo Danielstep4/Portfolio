@@ -2,8 +2,8 @@
   import { theme } from "../styles/theme";
   import { checkIPAddressIPv4 } from "../utils/formHelper";
   import { GEO_URL } from "../geoUrl";
-  import { Writable } from "svelte/store";
   import { onMount } from "svelte";
+  import type { Writable } from "svelte/store";
 
   export let IPInfo: Writable<IPResponse | null>;
 
@@ -50,7 +50,7 @@
 
 <main
   class="bg-cover text-center md:p-5 flex items-center flex-col justify-center w-full"
-  style="background-image: url('{bgImage}'); "
+  style="background-image: url('{bgImage}'); height: 33.34vh"
 >
   <h1 class="text-3xl text-white my-7 font-bold">IP Address Tracker</h1>
   <form class="flex md:mb-24 mb-60 md:w-1/4">
