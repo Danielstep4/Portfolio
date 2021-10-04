@@ -36,6 +36,8 @@
           console.log(e);
         }
       }
+    } else {
+      console.log("invalid ip");
     }
   };
   // On Submit get the ip data the user writen
