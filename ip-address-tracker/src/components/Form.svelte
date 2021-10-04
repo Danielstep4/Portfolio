@@ -67,6 +67,10 @@
   // On Submit get the ip data the user writen
   const handleSubmit = (e: Event) => {
     e.preventDefault();
+    error = {
+      isError: false,
+      msg: null,
+    };
     isLoading = true;
     IPInfo.set(null);
     infoBarProps = undefined;
