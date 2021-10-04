@@ -40,3 +40,10 @@ interface MapProps {
   lng: number;
   text: string;
 }
+
+interface FormCompError {
+  isError: boolean;
+  msg: string | null;
+}
+
+type ErrorReasons = "INVALID_IP" | "PRIVATE_IP" | "BAD_API_RESPONSE";

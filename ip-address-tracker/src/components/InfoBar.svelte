@@ -3,12 +3,11 @@
 
   // Props
   export let infoBarProps: InfoBarProps;
-  export let isValidIP: boolean;
+  export let isLoading: boolean;
+  export let error: FormCompError;
   // Flags
-  $: isLoading = !infoBarProps;
-  $: isPrivate =
-    !!infoBarProps && (!infoBarProps.isp || !infoBarProps.timezone);
-  $: isInvalid = !isValidIP;
+  $: isLoading = isLoading;
+  $: isError = error && error.isError;
   // Data
   $: data = !!infoBarProps
     ? [
@@ -23,10 +22,8 @@
 <main
   class="bg-white w-5/6 mx-auto shadow-2xl flex md:flex-row flex-col items-center justify-between md:p-10 p-2 rounded-xl z-1000 absolute left-0 right-0 bottom-0 transform translate-y-1/2"
 >
-  {#if isPrivate}
-    <h1 class="mx-auto font-bold text-red-500">Error! Private IP Address.</h1>
-  {:else if isInvalid}
-    <h1 class="mx-auto font-bold text-red-500">Error! Invalid IP.</h1>
+  {#if isError}
+    <h1 class="mx-auto font-bold text-red-500">{error.msg}</h1>
   {:else if isLoading}
     <h1 class="mx-auto">Loading...</h1>
   {:else if !!infoBarProps}

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { theme } from "../styles/theme";
-  import { checkIPAddressIPv4 } from "../utils/formHelper";
+  import { checkIPAddressIPv4, handleErrors } from "../utils/formHelper";
   import { GEO_URL } from "../geoUrl";
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
@@ -9,7 +9,12 @@
   // Props
   export let IPInfo: Writable<IPResponse | null>;
   // State
+  let error: FormCompError = {
+    isError: false,
+    msg: null,
+  };
   let infoBarProps: InfoBarProps;
+  let isLoading = true;
   const bgImage = "/assets/pattern-bg.png";
   // let ipAddress =
   //   Math.floor(Math.random() * 255) +
@@ -21,9 +26,9 @@
   //   "." +
   //   Math.floor(Math.random() * 255);
   let ipAddress = "139.236.226.201";
-  let isValidIP = true;
   /** Populates the IPInfo store and infobarProps state */
   const populateState = (val: IPResponse) => {
+    isLoading = false;
     IPInfo.set(val);
     infoBarProps = {
       ip: val.ip,
@@ -49,18 +54,20 @@
           populateState(result);
           sessionStorage.setItem(ipAddress, JSON.stringify(result));
         } catch (e) {
-          console.log(e);
+          ipAddress = "";
+          error = handleErrors("BAD_API_RESPONSE");
         }
       }
     } else {
+      isLoading = false;
+      error = handleErrors("INVALID_IP");
       ipAddress = "";
-      isValidIP = false;
     }
   };
   // On Submit get the ip data the user writen
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    isValidIP = true;
+    isLoading = true;
     IPInfo.set(null);
     infoBarProps = undefined;
     getData();
@@ -100,5 +107,5 @@
       >
     </button>
   </form>
-  <InfoBar {infoBarProps} {isValidIP} />
+  <InfoBar {infoBarProps} {isLoading} {error} />
 </main>
