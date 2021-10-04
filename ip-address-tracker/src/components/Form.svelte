@@ -20,6 +20,7 @@
   //   "." +
   //   Math.floor(Math.random() * 255);
   let ipAddress = "139.236.226.201";
+  let isValidIP = true;
   /** Populates the IPInfo store and infobarProps state */
   const populateState = (val: IPResponse) => {
     IPInfo.set(val);
@@ -51,12 +52,14 @@
         }
       }
     } else {
-      console.log("invalid ip");
+      ipAddress = "";
+      isValidIP = false;
     }
   };
   // On Submit get the ip data the user writen
   const handleSubmit = (e: Event) => {
     e.preventDefault();
+    isValidIP = true;
     IPInfo.set(null);
     infoBarProps = undefined;
     getData();
@@ -96,5 +99,5 @@
       >
     </button>
   </form>
-  <InfoBar {infoBarProps} />
+  <InfoBar {infoBarProps} {isValidIP} />
 </main>
