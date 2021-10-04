@@ -1,11 +1,12 @@
 <script lang="ts">
   import L from "leaflet";
 
+  // Props
   export let mapProps: MapProps;
-
+  // Map Object
   let map: L.Map;
-
-  const createMap = (lat: number, lng: number, text: string) => {
+  // Updating Map according to the component props
+  const updateMap = (lat: number, lng: number, text: string) => {
     if (map) {
       map.setView([lat, lng], 13);
 
@@ -17,17 +18,22 @@
       L.marker([lat, lng]).addTo(map).bindPopup(text).openPopup();
     }
   };
+  /**Initializing the map.
+   * on update trigers update map.
+   * on unmount stoping. */
   const initMap = (node: HTMLElement, props: MapProps) => {
     map = L.map("map");
     return {
       update(props: MapProps) {
         if (!!props) {
-          const { lat, lng, text } = props;
-          createMap(lat, lng, text);
+          if (props.lat && props.lng && props.text) {
+            const { lat, lng, text } = props;
+            updateMap(lat, lng, text);
+          }
         }
       },
       destroy() {
-        console.log("destroied");
+        map.stop();
       },
     };
   };

@@ -1,10 +1,15 @@
 <script lang="ts">
   import { theme } from "../styles/theme";
 
+  // Props
   export let infoBarProps: InfoBarProps;
   export let isValidIP: boolean;
-
+  // Flags
   $: isLoading = !infoBarProps;
+  $: isPrivate =
+    !!infoBarProps && (!infoBarProps.isp || !infoBarProps.timezone);
+  $: isInvalid = !isValidIP;
+  // Data
   $: data = !!infoBarProps
     ? [
         { name: "ip address", value: infoBarProps.ip },
@@ -13,9 +18,6 @@
         { name: "isp", value: infoBarProps.isp },
       ]
     : [];
-  $: isPrivate =
-    !!infoBarProps && (!infoBarProps.isp || !infoBarProps.timezone);
-  $: isInvalid = !isValidIP;
 </script>
 
 <main

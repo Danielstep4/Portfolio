@@ -6,8 +6,9 @@
   import type { Writable } from "svelte/store";
   import InfoBar from "./InfoBar.svelte";
 
+  // Props
   export let IPInfo: Writable<IPResponse | null>;
-
+  // State
   let infoBarProps: InfoBarProps;
   const bgImage = "/assets/pattern-bg.png";
   // let ipAddress =
