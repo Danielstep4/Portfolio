@@ -1,6 +1,10 @@
 <script lang="ts">
   import { theme } from "../styles/theme";
-  import { checkIPAddressIPv4, handleErrors } from "../utils/formHelper";
+  import {
+    checkIPAddressIPv4,
+    checkIPPrivate,
+    handleErrors,
+  } from "../utils/formHelper";
   import { GEO_URL } from "../geoUrl";
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
@@ -28,6 +32,8 @@
   let ipAddress = "139.236.226.201";
   /** Populates the IPInfo store and infobarProps state */
   const populateState = (val: IPResponse) => {
+    error = checkIPPrivate(val);
+    if (error.isError) return;
     isLoading = false;
     IPInfo.set(val);
     infoBarProps = {
