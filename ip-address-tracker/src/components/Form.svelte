@@ -55,7 +55,7 @@
         populateState(cachedInfoObj);
       } else {
         try {
-          const response = await fetch(GEO_URL + ipAddress);
+          const response = await fetch(GEO_URL + ipAddress.replace(/0\B/g, ""));
           const result = (await response.json()) as IPResponse;
           populateState(result);
           sessionStorage.setItem(ipAddress, JSON.stringify(result));
