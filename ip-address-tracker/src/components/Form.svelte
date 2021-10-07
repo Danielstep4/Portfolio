@@ -55,7 +55,24 @@
         populateState(cachedInfoObj);
       } else {
         try {
-          const response = await fetch(GEO_URL + ipAddress.replace(/0\B/g, ""));
+          const token = sessionStorage.getItem("token");
+          if (!token) return;
+          const response = await fetch("http://localhost:8080/getInfo", {
+            method: "POST",
+            cache: "no-cache",
+            mode: "cors",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token,
+              ipAddress: ipAddress.replace(/\b0/g, ""),
+            }),
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+          });
+          console.log(response);
           const result = (await response.json()) as IPResponse;
           populateState(result);
           sessionStorage.setItem(ipAddress, JSON.stringify(result));

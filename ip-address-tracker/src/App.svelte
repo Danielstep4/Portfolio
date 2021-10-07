@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { writable } from "svelte/store";
   import Form from "./components/form.svelte";
   import Map from "./components/Map.svelte";
@@ -24,6 +24,18 @@
   });
   // Clearing Subscriber
   onDestroy(() => unsubscribe());
+  // getToken
+  onMount(() =>
+    fetch("http://localhost:8080/getToken")
+      .then((response) =>
+        response.json().then((data) => {
+          if (data && data.token) {
+            sessionStorage.setItem("token", data.token);
+          }
+        })
+      )
+      .catch(console.log)
+  );
 </script>
 
 <main class="w-full flex flex-col min-h-screen">
