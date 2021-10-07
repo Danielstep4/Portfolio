@@ -66,7 +66,7 @@
             },
             body: JSON.stringify({
               token,
-              ipAddress: ipAddress.replace(/\b0/g, ""),
+              ipAddress,
             }),
             redirect: "follow",
             referrerPolicy: "no-referrer",
