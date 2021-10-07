@@ -5,7 +5,6 @@
     checkIPPrivate,
     handleErrors,
   } from "../utils/formHelper";
-  import { GEO_URL } from "../geoUrl";
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
   import InfoBar from "./InfoBar.svelte";
