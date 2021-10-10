@@ -36,7 +36,7 @@
             })
           : null
       )
-      .catch(console.log)
+      .catch(() => alert("Sorry! There is a problem please try again later."))
   );
 </script>
 

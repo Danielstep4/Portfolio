@@ -74,7 +74,6 @@
               referrerPolicy: "no-referrer",
             }
           );
-          console.log(response);
           const result = (await response.json()) as IPResponse;
           populateState(result);
           sessionStorage.setItem(ipAddress, JSON.stringify(result));
