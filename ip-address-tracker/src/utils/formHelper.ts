@@ -22,6 +22,8 @@ export const handleErrors = (reason?: ErrorReasons): FormCompError => {
     error.msg = "Server Error! Please try again later or a different ip.";
   } else if (reason === "PRIVATE_IP") {
     error.msg = "Error! Private IP.";
+  } else if (reason === "LIMIT") {
+    error.msg = "Error! Limit Exceeded (20 requests).";
   } else (error.isError = false), (error.msg = null);
   return error;
 };

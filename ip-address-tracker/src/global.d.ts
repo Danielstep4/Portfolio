@@ -46,4 +46,4 @@ interface FormCompError {
   msg: string | null;
 }
 
-type ErrorReasons = "INVALID_IP" | "PRIVATE_IP" | "BAD_API_RESPONSE";
+type ErrorReasons = "INVALID_IP" | "PRIVATE_IP" | "BAD_API_RESPONSE" | "LIMIT";

@@ -8,9 +8,12 @@
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
   import InfoBar from "./InfoBar.svelte";
+  import { loop_guard } from "svelte/internal";
+  import { loop_guard } from "svelte/internal";
 
   // Props
   export let IPInfo: Writable<IPResponse | null>;
+  export let userIp: string;
   // State
   let error: FormCompError = {
     isError: false,
@@ -19,16 +22,8 @@
   let infoBarProps: InfoBarProps;
   let isLoading = true;
   const bgImage = "/assets/pattern-bg.png";
-  // let ipAddress =
-  //   Math.floor(Math.random() * 255) +
-  //   1 +
-  //   "." +
-  //   Math.floor(Math.random() * 255) +
-  //   "." +
-  //   Math.floor(Math.random() * 255) +
-  //   "." +
-  //   Math.floor(Math.random() * 255);
-  let ipAddress = "139.236.226.201";
+
+  let ipAddress = "";
   /** Populates the IPInfo store and infobarProps state */
   const populateState = (val: IPResponse) => {
     error = checkIPPrivate(val);
@@ -74,9 +69,13 @@
               referrerPolicy: "no-referrer",
             }
           );
-          const result = (await response.json()) as IPResponse;
-          populateState(result);
-          sessionStorage.setItem(ipAddress, JSON.stringify(result));
+          if (response.status === 200) {
+            const result = (await response.json()) as IPResponse;
+            populateState(result);
+            sessionStorage.setItem(ipAddress, JSON.stringify(result));
+          } else if (response.status === 401) {
+            error = handleErrors("LIMIT");
+          } else throw new Error("Server Error");
         } catch (e) {
           ipAddress = "";
           error = handleErrors("BAD_API_RESPONSE");
@@ -101,7 +100,10 @@
     getData();
   };
   // On Mount get the random ip data
-  onMount(() => getData());
+  onMount(() => {
+    ipAddress = userIp;
+    getData();
+  });
 </script>
 
 <main

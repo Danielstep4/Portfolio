@@ -1,5 +1,6 @@
 <script lang="ts">
   import { theme } from "../styles/theme";
+  import Loading from "./Loading.svelte";
 
   // Props
   export let infoBarProps: InfoBarProps;
@@ -25,7 +26,9 @@
   {#if isError}
     <h1 class="mx-auto font-bold text-red-500">{error.msg}</h1>
   {:else if isLoading}
-    <h1 class="mx-auto">Loading...</h1>
+    <div class="mx-auto">
+      <Loading />
+    </div>
   {:else if !!infoBarProps}
     {#each data as object, i}
       {#if i}
