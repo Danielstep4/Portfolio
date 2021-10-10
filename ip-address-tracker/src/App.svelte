@@ -26,13 +26,15 @@
   onDestroy(() => unsubscribe());
   // getToken
   onMount(() =>
-    fetch("http://localhost:8080/getToken")
+    fetch("https://stormy-island-29228.herokuapp.com/getToken")
       .then((response) =>
-        response.json().then((data) => {
-          if (data && data.token) {
-            sessionStorage.setItem("token", data.token);
-          }
-        })
+        response
+          ? response.json().then((data) => {
+              if (data && data.token) {
+                sessionStorage.setItem("token", data.token);
+              }
+            })
+          : null
       )
       .catch(console.log)
   );

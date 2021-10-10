@@ -56,21 +56,24 @@
         try {
           const token = sessionStorage.getItem("token");
           if (!token) return;
-          const response = await fetch("http://localhost:8080/getInfo", {
-            method: "POST",
-            cache: "no-cache",
-            mode: "cors",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              token,
-              ipAddress,
-            }),
-            redirect: "follow",
-            referrerPolicy: "no-referrer",
-          });
+          const response = await fetch(
+            "https://stormy-island-29228.herokuapp.com/getInfo",
+            {
+              method: "POST",
+              cache: "no-cache",
+              mode: "cors",
+              credentials: "same-origin",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token,
+                ipAddress,
+              }),
+              redirect: "follow",
+              referrerPolicy: "no-referrer",
+            }
+          );
           console.log(response);
           const result = (await response.json()) as IPResponse;
           populateState(result);
