@@ -2,9 +2,10 @@
   import { writable } from "svelte/store";
   import About from "./pages/About.svelte";
   import Home from "./pages/Home.svelte";
-  import Navbar from "./components/Navbar.svelte";
+  import Navbar from "./components/Navbar/Navbar.svelte";
   import Projects from "./pages/Projects.svelte";
   import { theme } from "./styles/theme";
+  import { onMount } from "svelte";
 
   const bgImage = "./assets/background.jpg";
   // Navigation Store - Handles Navbar indicator and what the app displays
@@ -13,6 +14,13 @@
   $: document.title = "Daniel Stepanishin - " + currentPage;
   navigationStore.subscribe((val) => {
     currentPage = val.currentPage;
+  });
+  onMount(() => {
+    // Deleting main element that is ssr for SEO
+    const ssr = document.querySelector("#ssr");
+    ssr.innerHTML = "";
+    ssr.remove();
+    console.log(ssr);
   });
 </script>
 

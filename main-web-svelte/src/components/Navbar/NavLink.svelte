@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { theme } from "../styles/theme";
+  import { theme } from "../../styles/theme";
   export let isActive: boolean;
   export let name: SitePages;
   export let changeNavigation: (page: SitePages) => void;

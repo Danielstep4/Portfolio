@@ -7,7 +7,7 @@
     faGithub,
     faInstagram,
   } from "@fortawesome/free-brands-svg-icons";
-  import { theme } from "../styles/theme";
+  import { theme } from "../../styles/theme";
   import NavLink from "./NavLink.svelte";
   import SocialNavLink from "./SocialNavLink.svelte";
 
