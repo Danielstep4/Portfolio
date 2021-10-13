@@ -26,7 +26,7 @@
 
 <!-- App Component will be used as a switch to display components -->
 <main
-  class="h-screen w-screen bg-cover font-body"
+  class="h-screen w-screen bg-cover font-body flex flex-col"
   style="background-image: url('{bgImage}'); color: {theme.palette.fonts
     .white} "
 >

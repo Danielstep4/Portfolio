@@ -13,7 +13,7 @@
   const size = "4x";
 </script>
 
-<div class="grid grid-cols-3 gap-10 w-1/2">
+<div class="grid grid-cols-3 gap-4 px-5 w-2/3">
   <Fa icon={faReact} color="#61dbfb" {size} />
   <Fa icon={faHtml5} color="#f06529" {size} />
   <Fa icon={faCss3} color="#1e88e5" {size} />
