@@ -6,8 +6,8 @@
   export let iconComp: IconDefinition;
 </script>
 
-<div class="mr-1">
+<div class="mr-2.5">
   <a href={link} target="_blank">
-    <Fa icon={iconComp} />
+    <Fa icon={iconComp} size="1.5x" />
   </a>
 </div>

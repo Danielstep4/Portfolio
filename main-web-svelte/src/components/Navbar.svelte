@@ -48,21 +48,23 @@
   style="border-bottom: 1px solid {theme.palette.elements.gray};"
 >
   <nav class="flex items-center justify-between">
-    <span
-      on:click={() => changeNavigation("Home")}
-      class="cursor-pointer select-none text-2xl font-title"
-      >Daniel Stepanishin</span
-    >
-    <div class="flex">
-      {#each pagesArray as page}
-        <NavLink
-          isActive={currentPage === page}
-          name={page}
-          {changeNavigation}
-        />
-      {/each}
+    <div class="flex items-center">
+      <span
+        on:click={() => changeNavigation("Home")}
+        class="cursor-pointer select-none text-2xl font-title font-bold ml-2"
+        >Daniel Stepanishin</span
+      >
+      <div class="flex ml-10">
+        {#each pagesArray as page}
+          <NavLink
+            isActive={currentPage === page}
+            name={page}
+            {changeNavigation}
+          />
+        {/each}
+      </div>
     </div>
-    <div class="flex">
+    <div class="flex mr-10">
       {#each socialLinksArray as socialLink}
         <SocialNavLink {...socialLink} />
       {/each}
