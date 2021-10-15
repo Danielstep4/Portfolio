@@ -19,7 +19,7 @@ export const handleErrors = (reason?: ErrorReasons): FormCompError => {
   if (reason === "INVALID_IP") {
     error.msg = "Error! Invalid IP.";
   } else if (reason === "BAD_API_RESPONSE") {
-    error.msg = "Server Error! Please try again later or a different ip.";
+    error.msg = "Server Error! Please try again later.";
   } else if (reason === "PRIVATE_IP") {
     error.msg = "Error! Private IP.";
   } else if (reason === "LIMIT") {

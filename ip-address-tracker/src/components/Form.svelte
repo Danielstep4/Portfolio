@@ -8,8 +8,6 @@
   import { onMount } from "svelte";
   import type { Writable } from "svelte/store";
   import InfoBar from "./InfoBar.svelte";
-  import { loop_guard } from "svelte/internal";
-  import { loop_guard } from "svelte/internal";
 
   // Props
   export let IPInfo: Writable<IPResponse | null>;
